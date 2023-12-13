@@ -11,6 +11,13 @@
       "list": [
         {
           "name": "",
+          "pathName": "pages/cropper/cropper",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
           "pathName": "pages/camera/camera",
           "query": "",
           "launchMode": "default",

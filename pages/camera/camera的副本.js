@@ -56,23 +56,43 @@ Page({
             quality: "high",
             success: res => {
                 var file = res.tempImagePath;
-                
-                
+                var filename = 'example1130.png'
+                wx.cloud.uploadFile({
+                    cloudPath: filename, // 对象存储路径，根路径直接填文件名，文件夹例子 test/文件名，不要 / 开头
+                    filePath: file, // 微信本地文件，通过选择图片，聊天文件等接口获取
+                    config: {
+                      env: 'prod-7gqrt3ipc65119e3' // 需要替换成自己的微信云托管环境ID
+                    }
+                  }).then(res => {
+                    console.log(res.fileID)
+                    // app.globalData.alphaImage = res.fileid
+                    compress(file, 2*1024*1024, 80, r=> {
+                        generateBase64AlphaPhoto(res.fileID).then(res => {
+                          // app.globalData.alphaImage = res.image_base64
+                          console.log(res)
+                          app.globalData.alphaImage = res.data.fileid
+                          wx.hideLoading()
+                          wx.redirectTo({
+                              url: "../preview/preview"
+                          });
+                        }).catch(err => {
+                          wx.hideLoading()
+                          console.log(err)
+                          wx.showToast({
+                            title: '[5000] 拍摄制作失败，请重试或联系客服处理！',
+                            icon: 'none'
+                          })
+                        })
+                      })
                     
-                // app.globalData.alphaImage = res.fileid
-                compress(file, 2*1024*1024, 80, r=> {
-                    console.log('r:'+r)
-                    app.globalData.alphaImage = r
-                    // wx.hideLoading()
-                    // wx.redirectTo({
-                    //     url: "../preview/preview"
-                    // });
-                })
-                    
-                wx.hideLoading()
-                wx.redirectTo({
-                    url: "../cropper/cropper"
-                });
+                    wx.hideLoading()
+                    wx.redirectTo({
+                        url: "../preview/preview"
+                    });
+                  }).catch(error => {
+                    console.error(err)
+                  })
+                
             },
             fail: err => {
               wx.hideLoading()

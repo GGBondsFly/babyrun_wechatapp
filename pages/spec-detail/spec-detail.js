@@ -30,18 +30,18 @@ Page({
                 } = this.data.data
                 var file = result.tempFiles[0];
                 compress(file.tempFilePath, 1024*1024, 80, path=> {
-                  generateBase64AlphaPhoto({
-                    image_base64: wx.getFileSystemManager().readFileSync(path, "base64"),
-                    width: pix_width,
-                    height: pix_height
-                  }).then(res => {
-                    app.globalData.alphaImage = res.image_base64
-                    wx.hideLoading()
-                    wx.redirectTo({
-                        url: "../preview/preview"
-                    });
-                  })
-                })      
+                    console.log('r:'+path)
+                    app.globalData.alphaImage = path
+                    // wx.hideLoading()
+                    // wx.redirectTo({
+                    //     url: "../preview/preview"
+                    // });
+                })
+                wx.hideLoading()
+                wx.redirectTo({
+                    url: "../cropper/cropper"
+                });
+
             }
         })
     }
