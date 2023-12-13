@@ -9,7 +9,8 @@
     "pages/save-image/save-image",
     "pages/album/album",
     "pages/album-detail/album-detail",
-    "pages/cropper/cropper"
+    "pages/cropper/cropper",
+    "pages/user/user"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -37,6 +38,12 @@
         "text": "相册",
         "iconPath": "assets/icon/photo-grey.png",
         "selectedIconPath": "assets/icon/photo-click.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "主页",
+        "iconPath": "assets/icon/user-gray.png",
+        "selectedIconPath": "assets/icon/user-click.png"
       }
     ]
   },

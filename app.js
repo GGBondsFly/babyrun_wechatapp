@@ -2,37 +2,53 @@ const { login } = require("./api/login");
 
 App({
     onLaunch: function() {
-        this.userLogin()
-        var e = wx.getSystemInfoSync()
-        this.globalData.statusBarHeight = e.statusBarHeight
-        this.globalData.windowWidth = e.windowWidth
-        this.globalData.windowHeight = e.windowHeight
-    },
-    globalData: {
-      openid: ""
-    },
-    userLogin: function() {
-      wx.login({
-        success: res => {
-          login({code: res.code}).then(res => {
-            this.globalData.openid = res.openid
-            // wx.setStorage({
-            //   key: constants.TOKEN,
-            //   data: JSON.stringify(s.data.data)
-            // })
-          }).catch(err => {
-            wx.showToast({
-              title: '[002]登录失败，请重试',
-              icon: 'none'
-            })
-          })
-        },
-        fail: err => {
-          wx.showToast({
-            title: '[001]登录失败，请重试',
-            icon: 'none'
-          })
-        }
+        // 初始化云函数
+        wx.cloud.init({
+          env: "babyface-4gku32vc4014f602",
+          traceUser: true
+        })
+
+        // 获取用户信息
+        wx.getSetting({
+          success: res => {
+              if (res.authSetting['scope.userInfo']) {
+                  // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+                  wx.getUserInfo({
+                      success: res => {
+                          this.globalData.userInfo = res.userInfo
+
+                          // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+                          // 所以此处加入 callback 以防止这种情况
+                          if (this.userInfoReadyCallback) {
+                              this.userInfoReadyCallback(res)
+                          }
+                      }
+                  })
+              } else {
+                  // 跳转登录页面让用户登录
+                  wx.switchTab({ url: 'pages/user/user' })
+              }
+          }
       })
-    }
+
+      var e = wx.getSystemInfoSync()
+      this.globalData.statusBarHeight = e.statusBarHeight
+      this.globalData.windowWidth = e.windowWidth
+      this.globalData.windowHeight = e.windowHeight
+    },
+
+    globalData: {
+      hasUser: false, // 数据库中是否有用户
+      hasUserInfo: false, // 小程序的userInfo是否有获取
+      userInfo: null,
+      checkResult: null,
+      code: null,
+      openId: null,
+      flag: 0,
+      nickName: '',
+      allData: {
+          photos: []
+      },
+      id: null
+  }
 });
