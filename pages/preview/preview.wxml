@@ -22,7 +22,7 @@
     </van-tabs>
   </view>
   <view class="bottom">
-    <button bindtap="save" class="btn">合成证件照</button>
+    <button bindtap="formSubmit" class="btn">合成证件照</button>
   </view>
 </view>
 <van-dialog id="van-dialog" confirm-button-color="#4E47FD" custom-class="dialog-btn"/>

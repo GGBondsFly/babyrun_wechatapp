@@ -106,5 +106,6 @@ Page({
 
       app.globalData.nickName = user.nickName
       app.globalData.id = result._id
+      app.globalData.photos = []
   }
  })

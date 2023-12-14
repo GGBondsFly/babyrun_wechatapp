@@ -24,7 +24,35 @@ Page({
         })
       }
       this.loadHostList()
+      this.checkUser()
     },
+
+    // 检查是否有用户
+    async checkUser () {
+      const db = wx.cloud.database({})
+
+      // user collection 设置权限为仅创建者及管理员可读写
+      // 这样除了管理员之外，其它用户只能读取到自己的用户信息
+      const user = await db.collection('user').get()
+
+      // 如果没有用户，跳转到登录页面登录
+      if (!user.data.length) {
+        
+          app.globalData.hasUser = false
+
+          return wx.switchTab({ url: '/pages/user/user' })
+      }
+
+      const userinfo = user.data[0]
+      app.globalData.hasUser = true
+      app.globalData.id = userinfo._id
+      app.globalData.nickName = userinfo.nickName
+      app.globalData.photos = userinfo.photos
+
+      // 从用户信息中获取相册
+      // this.getPhotos(userinfo.photos)
+    },
+
     gotoSpecDetail: function(a) {
       app.globalData.spec = a.currentTarget.dataset.spec
       wx.navigateTo({

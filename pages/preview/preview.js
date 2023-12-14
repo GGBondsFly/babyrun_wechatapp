@@ -71,23 +71,77 @@ Page({
         b: parseInt('0x' + hex.slice(5, 7)),
       }
     },
-    save: function() {
-      if (adEnable && !this.data.skipAd) {
-        Dialog.confirm({
-          message: '完整观看视频可免费下载',
-        }).then(() => {
-          videoAd.show().catch(() => {
-            videoAd.load()
-              .then(() => videoAd.show())
-              .catch(err => {
-                console.log('激励视频 广告显示失败')
-              })
-          })
-        })
-      } else {
-        this.gen()
-      }
+
+    
+    // 上传图片
+    uploadPhoto (filePath) {
+      // 调用 wx.cloud.uploadFile 上传文件
+      return wx.cloud.uploadFile({
+        cloudPath: `${Date.now()}-${Math.floor(Math.random(0, 1) * 10000000)}.png`,
+        // cloudPath: "testimage.png",
+        filePath
+      })
     },
+
+    formSubmit: function() {
+      wx.showLoading({ title: '提交中' })
+      this.uploadPhoto(app.globalData.alphaImage).then(result => {
+        this.addPhotos(result)
+        wx.hideLoading()
+      }).catch(() => {
+          wx.hideLoading()
+          wx.showToast({ title: '上传图片错误', icon: 'error' })
+      })
+
+
+      // if (adEnable && !this.data.skipAd) {
+      //   Dialog.confirm({
+      //     message: '完整观看视频可免费下载',
+      //   }).then(() => {
+      //     videoAd.show().catch(() => {
+      //       videoAd.load()
+      //         .then(() => videoAd.show())
+      //         .catch(err => {
+      //           console.log('激励视频 广告显示失败')
+      //         })
+      //     })
+      //   })
+      // } else {
+      //   this.gen()
+      // }
+    },
+
+    // 添加图片信息到数据库
+    async addPhotos (photo) {
+      const db = wx.cloud.database()
+      // 图片数据写入数据库
+      let result = await db.collection('photo').add({
+        data: {
+          oriFileID: photo.fileID,
+          genFileID: null,
+          createTime: db.serverDate(),
+          genTime: null,
+          status: "generating"
+        }
+      })
+
+      // 更新本地缓存
+      const oldPhotos = app.globalData.photos
+      app.globalData.photos = [...oldPhotos, result]
+
+      // 更新用户数据库
+      db.collection('user').doc(app.globalData.id).update({
+        data: {
+        photos: db.command.set(app.globalData.photos)
+        }
+      }).then(result => {
+        console.log('写入成功', result)
+        wx.navigateBack()
+      })
+
+    },
+
+
     gen() {
       wx.showLoading({
         title: "制作中...",

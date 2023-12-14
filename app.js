@@ -46,9 +46,7 @@ App({
       openId: null,
       flag: 0,
       nickName: '',
-      allData: {
-          photos: []
-      },
+      photos: [],
       id: null
   }
 });
