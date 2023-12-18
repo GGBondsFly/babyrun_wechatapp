@@ -1,12 +1,15 @@
+Page{
+    background-color: #e4b8b8;
+   }
 .info {
   margin-left: 35rpx;
   margin-top: 37rpx;
   width: 686rpx;
-  height: 371rpx;
+  height: 230rpx;
 
   background: #FFFFFF;
   box-shadow: -2rpx -2rpx 4rpx 2rpx rgba(0, 0, 0, 0.02), 2rpx 2rpx 4rpx 2rpx rgba(0, 0, 0, 0.02);
-  border-radius: 20rpx;
+  border-radius: 50rpx;
 }
 
 .info-title {
@@ -21,7 +24,7 @@
   margin-top: 19rpx;
   display: flex;
   flex-direction: row;
-  font-size: 28rpx;
+  font-size: 30rpx;
 }
 
 .info-data-title {
@@ -71,9 +74,12 @@
 .guide-item {
   width: 100%; 
   height: 100%; 
-  border-radius: 20rpx;
+  border-radius: 50rpx;
 }
+.navigate{
 
+    color: rgb(255, 255, 255);
+}
 .bottom { 
   bottom: 30rpx; 
   display: flex; 

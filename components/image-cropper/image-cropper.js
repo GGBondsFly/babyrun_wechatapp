@@ -873,68 +873,70 @@ Component({
         
             },
             generatepic(event){
-                wx.canvasToTempFilePath({
-                    width: this.data.width * this.data.export_scale,
-                    height: Math.round(this.data.height * this.data.export_scale),
-                    destWidth: this.data.width * this.data.export_scale,
-                    destHeight: Math.round(this.data.height) * this.data.export_scale,
-                    fileType: 'png',
-                    quality: this.data.quality,
-                    canvasId: this.data.el,
-                    success: (res) => {
-                        app.globalData.alphaImage = res.tempFilePath
-                        var filename = 'example1213.jpg'
-                        wx.cloud.uploadFile({
-                            cloudPath: filename, // 对象存储路径，根路径直接填文件名，文件夹例子 test/文件名，不要 / 开头
-                            filePath: res.tempFilePath, // 微信本地文件，通过选择图片，聊天文件等接口获取
-                            config: {
-                            env: 'prod-7gqrt3ipc65119e3' // 需要替换成自己的微信云托管环境ID
-                            }
-                        }).then(res => {
-                            console.log(res.fileID)
-                            wx.cloud.getTempFileURL({
-                                fileList: [res.fileID] // 对象存储文件ID列表，最多50个，从上传文件接口或者控制台获取
-                            }).then(res => {
-                                console.log(res.fileList[0].tempFileURL)
-                                var prompt = res.fileList[0].tempFileURL + " an handsome boy"
-                                console.log(prompt)
+                this._draw(() => {
+                    wx.canvasToTempFilePath({
+                        width: this.data.width * this.data.export_scale,
+                        height: Math.round(this.data.height * this.data.export_scale),
+                        destWidth: this.data.width * this.data.export_scale,
+                        destHeight: Math.round(this.data.height) * this.data.export_scale,
+                        fileType: 'png',
+                        quality: this.data.quality,
+                        canvasId: this.data.el,
+                        success: (res) => {
+                            app.globalData.alphaImage = res.tempFilePath
+                            var filename = 'example1213.jpg'
+                            // wx.cloud.uploadFile({
+                            //     cloudPath: filename, // 对象存储路径，根路径直接填文件名，文件夹例子 test/文件名，不要 / 开头
+                            //     filePath: res.tempFilePath, // 微信本地文件，通过选择图片，聊天文件等接口获取
+                            //     config: {
+                            //     env: 'prod-7gqrt3ipc65119e3' // 需要替换成自己的微信云托管环境ID
+                            //     }
+                            // }).then(res => {
+                            //     console.log(res.fileID)
+                            //     wx.cloud.getTempFileURL({
+                            //         fileList: [res.fileID] // 对象存储文件ID列表，最多50个，从上传文件接口或者控制台获取
+                            //     }).then(res => {
+                            //         console.log(res.fileList[0].tempFileURL)
+                            //         var prompt = res.fileList[0].tempFileURL + " an handsome boy"
+                            //         console.log(prompt)
 
-                                
-                                
-                                
                                     
-                                // wx.request({
-                                //     url: "https://api.zhishuyun.com/midjourney/imagine?token=2d0da011f83947aa91545bca51cd366d",
-                                //     method: "POST",
-                                //     headers: {
-                                //       "accept": "application/json",
-                                //       "content-type": "application/json"
-                                //     },
-                                //     timeout:600000,
-                                //     data: JSON.stringify({
-                                //       "action": "generate",
-                                //       "prompt": prompt,
-                                //       "translation": false
-                                //     }),
-                                //     success(res){
-                                //         app.globalData.alphaImage = res.data.raw_image_url
-                                //         wx.redirectTo({
-                                //             url: "../preview/preview"
-                                //         });
-                                //         console.log(res)
-                                //     }
-                                //   })
-                            }).catch(error => {
-                                console.log('error')
-                                    console.error(error)
-                                })
-                            
-                        })
-                        wx.redirectTo({
-                            url: "../../pages/preview/preview"
-                        });
-                    }
-                }, this)
+                                    
+                                    
+                                        
+                            //         // wx.request({
+                            //         //     url: "https://api.zhishuyun.com/midjourney/imagine?token=2d0da011f83947aa91545bca51cd366d",
+                            //         //     method: "POST",
+                            //         //     headers: {
+                            //         //       "accept": "application/json",
+                            //         //       "content-type": "application/json"
+                            //         //     },
+                            //         //     timeout:600000,
+                            //         //     data: JSON.stringify({
+                            //         //       "action": "generate",
+                            //         //       "prompt": prompt,
+                            //         //       "translation": false
+                            //         //     }),
+                            //         //     success(res){
+                            //         //         app.globalData.alphaImage = res.data.raw_image_url
+                            //         //         wx.redirectTo({
+                            //         //             url: "../preview/preview"
+                            //         //         });
+                            //         //         console.log(res)
+                            //         //     }
+                            //         //   })
+                            //     }).catch(error => {
+                            //         console.log('error')
+                            //             console.error(error)
+                            //         })
+                                
+                            // })
+                            wx.redirectTo({
+                                url: "../../pages/preview/preview"
+                            });
+                        }
+                    }, this)
+                })
                 
             },
             //渲染

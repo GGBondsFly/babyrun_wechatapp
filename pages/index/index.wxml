@@ -1,37 +1,40 @@
-<header nav="{{false}}" title="快图证件照"></header>
-
+<header nav="{{false}}" title="赤子宝贝"></header>
+<view style="margin-left: 35rpx;margin-right: 35rpx;margin-top: 35rpx;"class="page-section-title">
+    <text>Hello,欢迎回来</text>
+</view>
 <view style="display: flex; flex-direction: column;">
-  <van-search
-      disabled 
-      bind:click-input = "gotoSearch"
-      shape="round"
-      placeholder="搜索证件照名称、尺寸"
-      style="margin:0rpx 10rpx;"
-    />
+  
 
-  <view style="display: flex; width: 100%; height: 370rpx; margin: 15rpx 0rpx 30rpx 0rpx;">
-    <view style="margin-left: 35rpx;">
-      <image src="../../assets/icon/one-inch.png" style="width: 328rpx; height: 370rpx;" bindtap="gotoOneInchSpec"></image>
+  <view style="display: flex; width: 100%; height: 750rpx; margin: 0rpx 0rpx 30rpx 0rpx;">
+    <view style="margin-left: 35rpx;margin-right: 35rpx;">
+      <image src="../../assets/icon/tab1.png" style="width: 680rpx; height: 750rpx;" bindtap="gotoOneInchSpec"></image>
     </view>
-    <view style="width: 50%; display: flex; flex-direction: column; margin-left: 26rpx;">
-      <view style="width: 332rpx; height: 172rpx;">
-        <image src="../../assets/icon/two-inch.png" style="width: 332rpx; height: 172rpx;" bindtap="gotoTwoInchSpec"></image>
-      </view>
-      <view style="width: 332rpx; height: 172rpx; margin-top: 29rpx;">
-        <image src="../../assets/icon/change-bg.png" style="width: 332rpx; height: 172rpx;" bindtap="gotochangeBg"></image>
-      </view>
+    
+  </view>
+  <view style="margin-left: 35rpx;margin-right: 35rpx;margin-bottom: 30rpx;"class="swiper">
+    <swiper
+        indicator-dots="{{true}}" autoplay="{{true}}" circular="{{true}}" vertical="{{false}}"
+        interval="{{5000}}" duration="{{500}}" previous-margin="{{0}}px" next-margin="{{0}}px">
+        <swiper-item>
+            <image class="img" src="../../assets/icon/swiper1.png" style="width: 680rpx; height: 300rpx;" bindtap="gotoOneInchSpec"></image>
+        </swiper-item>
+        <swiper-item>
+            <image class="img" src="../../assets/icon/swiper2.png" style="width: 680rpx; height: 300rpx;" bindtap="gotoOneInchSpec"></image>
+        
+        </swiper-item>
+        <swiper-item>
+            
+            <image class="img" src="../../assets/icon/swiper3.png" style="width: 680rpx; height: 300rpx;" bindtap="gotoOneInchSpec"></image>
+            
+        </swiper-item>
+        
+    </swiper>
+  </view>
+  <view style="display: flex; width: 100%; height: 445rpx; margin: 0rpx 0rpx 30rpx 0rpx;">
+    <view style="margin-left: 35rpx;margin-right: 35rpx;">
+      <image src="../../assets/icon/createname.png" style="width: 680rpx; height: 445rpx;" bindtap="gotoOneInchSpec"></image>
     </view>
+    
   </view>
   
-  <view style="margin: 0rpx 35rpx 0rpx 35rpx">
-    <van-tabs active="{{ active }}" color="#4E47FD" title-active-color="#4E47FD" line-width="40rpx" ellipsis="false" bind:change="clickTab">
-      <van-tab title="热门" name="99" title-style="font-size: {{ active==99?32:28 }}rpx; font-weight: 700;"></van-tab>
-      <van-tab title="寸照" name="6" title-style="font-size: {{ active==6?32:28 }}rpx; font-weight: 700;"></van-tab>
-      <van-tab title="教资" name="3" title-style="font-size: {{ active==3?32:28 }}rpx; font-weight: 700;"></van-tab>
-      <van-tab title="建筑" name="4" title-style="font-size: {{ active==4?32:28 }}rpx; font-weight: 700;"></van-tab>
-      <van-tab title="公务员" name="2" title-style="font-size: {{ active==2?32:28 }}rpx; font-weight: 700;"></van-tab>
-      <van-tab title="事业编" name="5" title-style="font-size: {{ active==5?32:28 }}rpx; font-weight: 700;"></van-tab>
-    </van-tabs>
-    <spec bind:chooseSpec="gotoSpecDetail" data="{{item}}" data-spec="{{item}}" wx:for="{{specs}}" wx:key="index"></spec>
-  </view>
 </view>

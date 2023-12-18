@@ -7,7 +7,7 @@ Page({
     data: {
         active: "99",
         show: true,
-        statusBarHeight: app.globalData.statusBarHeight
+        statusBarHeight: app.globalData.statusBarHeight,
     },
     onLoad: function() {
       if (wx.createInterstitialAd) {
@@ -50,7 +50,7 @@ Page({
       app.globalData.photos = userinfo.photos
 
       // 从用户信息中获取相册
-      // this.getPhotos(userinfo.photos)
+      // this.getPhotos(userinfo.photos) 
     },
 
     gotoSpecDetail: function(a) {

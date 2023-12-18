@@ -1,5 +1,5 @@
 .image-cropper {
-    background: rgba(14, 13, 13, .8);
+    background: #f59494;
     position: fixed;
     top: 0;
     left: 0;
@@ -7,7 +7,11 @@
     height: 100vh;
     z-index: 1;
 }
-
+.page-section-title{
+    color: rgb(255, 255, 255);
+    font-size: 50rpx; 
+    text-align: center;
+}
 .image-cropper .main {
     position: absolute;
     width: 100vw;
@@ -26,7 +30,7 @@
 }
 
 .image-cropper .bg_black {
-    background: rgba(0, 0, 0, 0.8) !important;
+    background: rgba(0, 0, 0, 0.5) !important;
 }
 
 .image-cropper .bg_gray {
