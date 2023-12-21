@@ -85,13 +85,23 @@ Page({
 
     formSubmit: function() {
       wx.showLoading({ title: '提交中' })
+      console.log('im here')
       this.uploadPhoto(app.globalData.alphaImage).then(result => {
         this.addPhotos(result)
         wx.hideLoading()
+        console.log('im here2')
+        wx.switchTab({
+            url: "../index/index"
+        });
+        console.log('im here3')
       }).catch(() => {
           wx.hideLoading()
           wx.showToast({ title: '上传图片错误', icon: 'error' })
+          wx.switchTab({
+            url: "../index/index"
+        });
       })
+      
 
 
       // if (adEnable && !this.data.skipAd) {
