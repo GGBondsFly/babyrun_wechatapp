@@ -3,6 +3,8 @@ var app = getApp();
 Page({
     data: {},
     onLoad: function(a) {
+        console.log('hello');
+        console.log(app.globalData.photo)
         this.setData({
             detail: app.globalData.photo
         });

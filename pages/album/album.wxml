@@ -1,5 +1,5 @@
 <header nav="{{false}}" title="我的照片"></header>
-<view bindtap="tapPage">
+<view class="page" bindtap="tapPage">
   <view class="list">
     <view wx:for="{{photos}}" wx:key="index">
       <van-swipe-cell right-width="{{ 65 }}" async-close bind:close="deletePhoto" data-index="{{index}}">

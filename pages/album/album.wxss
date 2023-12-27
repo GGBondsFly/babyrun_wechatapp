@@ -1,9 +1,11 @@
 page {
     padding-bottom: 100rpx;
+    background: #e4b8b8;
 }
 
 .list {
     margin-top: 30rpx;
+    background: #e4b8b8;
 }
 
 .item {
@@ -44,7 +46,7 @@ page {
 
 .item .detail {
     align-items: center;
-    color: #91979c;
+    color: #FFFFFF;
     display: flex;
     font-size: 24rpx;
     margin-bottom: 14rpx;
@@ -64,6 +66,7 @@ page {
     line-height: 36rpx;
     text-align: center;
     width: 80rpx;
+    color:#FFFFFF;
 }
 
 .item .type0 {
@@ -77,7 +80,7 @@ page {
 }
 
 .date {
-    color: #ccc;
+    color: #FFFFFF;
     font-size: 24rpx;
 }
 

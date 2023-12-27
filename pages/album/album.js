@@ -22,8 +22,23 @@ Page({
     async getPhotos () {
       // 获取数据库实例
       const db = wx.cloud.database({})
+      const $ = db.command.aggregate
       var batchSize = 10; // 每批次的记录数
-      const userphoto = await db.collection("photo").get(); // 保存结果的数组
+      const userphoto_all = await db.collection("photo").get(); // 保存结果的数组
+      //use _id in user database to get photo
+      const user = await db.collection("user").get()
+      console.log(app.globalData.id)
+      console.log("userdata")
+      console.log(user.data[0].photos)
+      const id_list = []
+      for(var i = 0; i < user.data[0].photos.length; i++){
+        id_list.push(user.data[0].photos[i]["_id"])
+      }
+
+      const userphoto = await db.collection("photo").orderBy('createTime', 'desc').where({_id:db.command.in(id_list)}).get()
+      console.log('userphoto')
+      console.log(userphoto)
+      
 
       // // 按照批次检索记录
       // for (var i = 0; i < app.globalData.photos.length; i += batchSize) {
@@ -48,6 +63,8 @@ Page({
       const realUrlsRes = await wx.cloud.getTempFileURL({ fileList })
 
       for (var i = 0; i < app.globalData.photos.length; i++) {
+          console.log(realUrlsRes.fileList[i])
+          console.log(realUrlsRes)
         if (realUrlsRes.fileList[i].status == 0){
           photoData.push({
             id: userphoto.data[i]._id,

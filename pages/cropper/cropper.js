@@ -10,7 +10,14 @@ Page({
     onLoad: function (options) {
     //获取到image-cropper实例
         this.cropper = this.selectComponent("#image-cropper");
-        //开始裁剪
+        console.log('onload=======')
+        // compress(app.globalData.alphaImage, 2*1024*1024, 80, r=> {
+        //     // var tempFilePaths = r.tempFilePath;
+        //     //开始裁剪
+        //     this.setData({
+        //         src:r,
+        //     });
+        // })
         this.setData({
             src:app.globalData.alphaImage,
         });
@@ -19,6 +26,7 @@ Page({
         })
     },
     upload() {
+        console.log('upload=======')
         let that = this;
         wx.chooseMedia ({
             count: 1,

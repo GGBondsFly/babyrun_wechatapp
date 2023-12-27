@@ -1,5 +1,6 @@
 page {
-    padding-bottom: 140rpx;
+    padding-bottom: 100rpx;
+    background: #e4b8b8;
 }
 
 .wrapper {
