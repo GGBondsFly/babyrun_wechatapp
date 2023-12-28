@@ -85,33 +85,23 @@ Page({
 
     formSubmit: function() {
       wx.showLoading({ title: '提交中' })
+      console.log('im here')
       this.uploadPhoto(app.globalData.alphaImage).then(result => {
-        this.addPhotos(result).then(dbresult => {
-          wx.cloud.callFunction({
-            // 云函数名称
-            name: 'draw',
-            // 传给云函数的参数
-            data: {
-              id: dbresult.subid,
-              fileid: dbresult.fileid,
-              prompt: "a chinese girl, sixteen years old"
-            },
-          })
-          .then(() => {
-            wx.hideLoading()
-          })
-          .catch(() => {
-            wx.hideLoading()
-            wx.showToast({ title: '提交绘制失败', icon: 'error' })
-          })
-        }).catch(() => {
-          wx.hideLoading()
-          wx.showToast({ title: '上传数据库错误', icon: 'error' })
-        })
+        this.addPhotos(result)
+        wx.hideLoading()
+        console.log('im here2')
+        wx.switchTab({
+            url: "../index/index"
+        });
+        console.log('im here3')
       }).catch(() => {
           wx.hideLoading()
           wx.showToast({ title: '上传图片错误', icon: 'error' })
+          wx.switchTab({
+            url: "../index/index"
+        });
       })
+      
 
 
       // if (adEnable && !this.data.skipAd) {
