@@ -47,6 +47,7 @@ App({
       flag: 0,
       nickName: '',
       photos: [],
-      id: null
+      id: null,
+      userphoto: [],
   }
 });

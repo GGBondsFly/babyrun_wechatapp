@@ -49,10 +49,23 @@ Page({
       app.globalData.nickName = userinfo.nickName
       app.globalData.photos = userinfo.photos
 
-      // 从用户信息中获取相册
-      // this.getPhotos(userinfo.photos) 
-    },
 
+      // 从用户信息中获取相册
+      this.getPhotos(userinfo.photos) 
+    },
+    async getPhotos (photos) {
+      const db = wx.cloud.database({})
+      const id_list = []
+      for(var i = 0; i < photos.length; i++){
+        id_list.push(photos[i]["_id"])
+      }
+
+      const userphoto_ = await db.collection("photo").orderBy('createTime', 'desc').where({_id:db.command.in(id_list)}).get()
+      console.log('userphoto')
+      console.log(userphoto_)
+      app.globalData.userphoto = userphoto_
+      
+    },
     gotoSpecDetail: function(a) {
       app.globalData.spec = a.currentTarget.dataset.spec
       wx.navigateTo({
