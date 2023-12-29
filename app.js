@@ -47,6 +47,7 @@ App({
       flag: 0,
       nickName: '',
       photos: [],
-      id: null
+      id: null,
+      prompt: " 1baby, chinese baby, 1 years old"
   }
 });

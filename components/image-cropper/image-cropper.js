@@ -886,19 +886,31 @@ Component({
                 wx.showLoading({ title: '提交中' })
                 console.log('im here')
                 this.uploadPhoto(app.globalData.alphaImage).then(result => {
-                this.addPhotos(result)
-                wx.hideLoading()
-                console.log('im here2')
-                wx.switchTab({
-                    url: "../index/index"
-                });
-                console.log('im here3')
-                }).catch(() => {
+                    this.addPhotos(result).then(dbresult =>{
+                        dbresult.prompt = app.globalData.prompt
+                        wx.cloud.callFunction({
+                            // 云函数名称
+                            name: 'draw',
+                            // 传给云函数的参数
+                            data: dbresult,
+                            success: function(res) {
+                              console.log(res.result)
+                            },
+                            fail: console.error
+                        })
+                    })
                     wx.hideLoading()
-                    wx.showToast({ title: '上传图片错误', icon: 'error' })
+                    console.log('im here2')
                     wx.switchTab({
-                    url: "../index/index"
-                });
+                        url: "../index/index"
+                    });
+                    console.log('im here3')
+                    }).catch(() => {
+                        wx.hideLoading()
+                        wx.showToast({ title: '上传图片错误', icon: 'error' })
+                        wx.switchTab({
+                        url: "../index/index"
+                    });
                 })
             
             },
@@ -914,9 +926,11 @@ Component({
                 data: {
                     oriFileID: photo.fileID,
                     genFileID: null,
+                    genImgWidth: null,
+                    genImgHeight: null,
                     createTime: db.serverDate(),
                     genTime: null,
-                    status: "generating",
+                    status: 1,
                     width: this.data.width * this.data.export_scale,
                     height: this.data.height * this.data.export_scale
                 }
@@ -928,14 +942,16 @@ Component({
         
                 // 更新用户数据库
                 db.collection('user').doc(app.globalData.id).update({
-                data: {
-                photos: db.command.set(app.globalData.photos)
-                }
+                    data: {
+                        photos: db.command.set(app.globalData.photos)
+                    }
                 }).then(result => {
-                console.log('写入成功', result)
-                wx.navigateBack()
+                    console.log('写入成功', result)
                 })
-        
+                return {
+                    id : result._id,
+                    fileid: photo.fileID
+                }
             },
             generatepic(event){
                 this._draw(() => {
