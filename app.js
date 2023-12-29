@@ -48,6 +48,7 @@ App({
       nickName: '',
       photos: [],
       id: null,
-      prompt: " 1baby, chinese baby, 1 years old"
+      prompt: " 1baby, chinese baby, 1 years old",
+      userphoto: [],
   }
 });

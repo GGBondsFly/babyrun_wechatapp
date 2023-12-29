@@ -935,10 +935,22 @@ Component({
                     height: this.data.height * this.data.export_scale
                 }
                 })
-        
+                console.log('result')
+                console.log(result)
                 // 更新本地缓存
                 const oldPhotos = app.globalData.photos
-                app.globalData.photos = [...oldPhotos, result]
+                // app.globalData.photos = [...oldPhotos, result]
+                const oldUserPhotos = app.globalData.userphoto
+                await db.collection("photo").doc(result._id).get().then(res => {
+                    console.log('=======res')
+                    console.log(res)
+                    console.log(app.globalData.userphoto)
+                    app.globalData.photos = [...oldPhotos, result]
+                    //add element to the front of userphoto
+                    app.globalData.userphoto.data.unshift(res.data)
+                    // app.globalData.userphoto.data.push(res.data)
+                    console.log(app.globalData.userphoto)
+                })
         
                 // 更新用户数据库
                 db.collection('user').doc(app.globalData.id).update({

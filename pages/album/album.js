@@ -21,23 +21,23 @@ Page({
     // 获取相册中的数据
     async getPhotos () {
       // 获取数据库实例
-      const db = wx.cloud.database({})
-      const $ = db.command.aggregate
+      // const db = wx.cloud.database({})
+      
       var batchSize = 10; // 每批次的记录数
-      const userphoto_all = await db.collection("photo").get(); // 保存结果的数组
-      //use _id in user database to get photo
-      const user = await db.collection("user").get()
-      console.log(app.globalData.id)
-      console.log("userdata")
-      console.log(user.data[0].photos)
-      const id_list = []
-      for(var i = 0; i < user.data[0].photos.length; i++){
-        id_list.push(user.data[0].photos[i]["_id"])
-      }
+      // const userphoto_all = await db.collection("photo").get(); // 保存结果的数组
+      // //use _id in user database to get photo
+      // const user = await db.collection("user").get()
+      // console.log(app.globalData.id)
+      // console.log("userdata")
+      // console.log(user.data[0].photos)
+      // const id_list = []
+      // for(var i = 0; i < user.data[0].photos.length; i++){
+      //   id_list.push(user.data[0].photos[i]["_id"])
+      // }
 
-      const userphoto = await db.collection("photo").orderBy('createTime', 'desc').where({_id:db.command.in(id_list)}).get()
-      console.log('userphoto')
-      console.log(userphoto)
+      // const userphoto = await db.collection("photo").orderBy('createTime', 'desc').where({_id:db.command.in(id_list)}).get()
+      // console.log('userphoto')
+      // console.log(userphoto)
       
 
       // // 按照批次检索记录
@@ -48,6 +48,7 @@ Page({
       //   result = result.concat(batchResult);
       //   console.info(batchResult)
       // }
+      const userphoto = app.globalData.userphoto
 
       // 获取照片列表
       const fileList = userphoto.data.map(photo => {
