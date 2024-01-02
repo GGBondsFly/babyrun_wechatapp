@@ -13,7 +13,7 @@ Page({
     onShow: function() {
       this.getPhotos().then(res => {
         this.setData({
-          photos: res,
+          photos: res
         })
       })
     },
@@ -21,7 +21,7 @@ Page({
     // 获取相册中的数据
     async getPhotos () {
       // 获取数据库实例
-      // const db = wx.cloud.database({})
+      // const db = wx.cloxud.database({})
       
       var batchSize = 10; // 每批次的记录数
       // const userphoto_all = await db.collection("photo").get(); // 保存结果的数组
@@ -48,53 +48,81 @@ Page({
       //   result = result.concat(batchResult);
       //   console.info(batchResult)
       // }
-      const userphoto = app.globalData.userphoto
+      // const userphoto = app.globalData.userphoto
+      const db = wx.cloud.database({})
+      // const user = await db.collection('user').get()
+      // const userinfo = user.data[0]
+      // var photos = userinfo.photos
+      var photos = app.globalData.photos
+      const id_list = []
+      for(var i = 0; i < photos.length; i++){
+        id_list.push(photos[i]["_id"])
+      }
 
+      const userphoto = await db.collection("photo").orderBy('createTime', 'desc').where({_id:db.command.in(id_list)}).get()
+      this.data.photos = userphoto.data
       // 获取照片列表
-      const fileList = userphoto.data.map(photo => {
-        if (photo.genFileID){
-          return photo.genFileID
-        }else{
-          return photo.oriFileID
-        }
-      })
+      // const fileList = userphoto.data.map(photo => {
+      //   if (photo.genFileID){
+      //     return photo.genFileID
+      //   }else{
+      //     return photo.oriFileID
+      //   }
+      // })
 
-      // 根据照片列表拉取照片的实际地址
+      // // 根据照片列表拉取照片的实际地址
+      // const photoData = []
+      // const realUrlsRes = await wx.cloud.getTempFileURL({ fileList })
+      
+      // for (var i = 0; i < app.globalData.photos.length; i++) {
+      //     console.log(realUrlsRes.fileList[i])
+      //     console.log(realUrlsRes)
+      //   if (realUrlsRes.fileList[i].status == 0){
+      //     photoData.push({
+      //       id: userphoto.data[i]._id,
+      //       url: realUrlsRes.fileList[i].tempFileURL,
+      //       oriFileID: userphoto.data[i].oriFileID,
+      //       genFileID: userphoto.data[i].genFileID,
+      //     })
+      //   }
+      // }
+      
+
       const photoData = []
-      const realUrlsRes = await wx.cloud.getTempFileURL({ fileList })
-
-      for (var i = 0; i < app.globalData.photos.length; i++) {
-          console.log(realUrlsRes.fileList[i])
-          console.log(realUrlsRes)
-        if (realUrlsRes.fileList[i].status == 0){
-          photoData.push({
-            id: userphoto.data[i]._id,
-            url: realUrlsRes.fileList[i].tempFileURL,
-            oriFileID: userphoto.data[i].oriFileID,
-            genFileID: userphoto.data[i].genFileID,
-          })
-        }
+      for (var i = 0; i < userphoto.data.length; i++) {
+          const dict = {}
+          if (userphoto.data[i].status == 1){
+            dict["genFileID"] = "../../assets/icon/generating.png"}
+          if (userphoto.data[i].status == 'failed'){
+            dict["genFileID"] = "../../assets/icon/failed.png"}
+          if (userphoto.data[i].status == 0){
+            dict["genFileID"] = userphoto.data[i].genFileID}
+          
+          
+          dict["oriFileID"] = userphoto.data[i].oriFileID
+          dict["id"] = userphoto.data[i]._id
+          photoData.push(dict)
       }
       return photoData
     },
 
     onHide: function() {
     },
-    onReachBottom: function() {
-        this.loadMore();
-    },
-    loadMore: function() {
-        listUserPhoto({
-          openid: app.globalData.openid,
-          next_id: this.data.photos[this.data.photos.length - 1].id
-        }).then(res => {
-          if (res.length > 0) {
-            this.setData({
-              photos: this.data.photos.concat(res)
-            })
-          }
-        })
-    },
+    // onReachBottom: function() {
+    //     this.loadMore();
+    // },
+    // loadMore: function() {
+    //     listUserPhoto({
+    //       openid: app.globalData.openid,
+    //       next_id: this.data.photos[this.data.photos.length - 1].id
+    //     }).then(res => {
+    //       if (res.length > 0) {
+    //         this.setData({
+    //           photos: this.data.photos.concat(res)
+    //         })
+    //       }
+    //     })
+    // },
     tapPage: function() {
     },
     more: function(t) {
@@ -104,13 +132,24 @@ Page({
             deletePosition: "bottom"
         });
     },
-    gotoDetail: function(t) {
+    gotoDetail_ori: function(t) {
         var index = t.currentTarget.dataset.index;
-        app.globalData.photo = this.data.photos[index]
-        console.log(this.data.photos[index], index)
+        console.log("gotoDetail_ori")
+        console.log(this.data.photos[index].oriFileID, index)
+        app.globalData.photo = this.data.photos[index].oriFileID
+        
          wx.navigateTo({
             url: "../album-detail/album-detail"
         });
+    },
+    gotoDetail_gen: function(t) {
+      var index = t.currentTarget.dataset.index;
+      app.globalData.photo = this.data.photos[index].genFileID
+      console.log("gotoDetail")
+      console.log(this.data.photos[index], index)
+       wx.navigateTo({
+          url: "../album-detail/album-detail"
+      });
     },
     deletePhoto: function(event) {
       const { position, instance } = event.detail;

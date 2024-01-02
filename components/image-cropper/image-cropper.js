@@ -898,6 +898,7 @@ Component({
                             },
                             fail: console.error
                         })
+                        console.log('callFunction draw')
                     })
                     wx.hideLoading()
                     console.log('im here2')

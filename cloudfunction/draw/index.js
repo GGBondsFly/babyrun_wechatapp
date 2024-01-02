@@ -14,6 +14,7 @@ exports.main = async (event, context) => {
   let openid = wxContext.OPENID
   let appid = wxContext.APPID
   let unionid = wxContext.UNIONID
+  console.log('draw main')
   return drawfunc(event.id, fileid, prompt)
 };
 
@@ -52,8 +53,8 @@ async function callapi (id, fileurl, prompt){
     })
   };
   console.info("post to draw with ", options)
-  return mockDrawApi(options).then(function (res) {
-  // return request(options).then(function (res) {
+//   return mockDrawApi(options).then(function (res) {
+  return request(options).then(function (res) {
     // 请求成功，上传文件
     let ret = JSON.parse(res)
     console.info("success draw image: ", ret)

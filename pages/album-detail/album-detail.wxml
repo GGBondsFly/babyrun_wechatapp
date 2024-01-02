@@ -1,8 +1,9 @@
 <header title="预览"></header>
-<view class="wrapper" wx:if="{{detail.photo_type==0}}">
+<view class="wrapper">
     <view class="top">
         <view class="image-wrapper">
-            <image class="photo" mode="widthFix" src="{{detail.url}}" style="width: {{detail.photoStandard?detail.photoStandard.pix_width:300}}rpx;"></image>
+          <image class="photo" lazyLoad="true" mode="aspectFit" show-menu-by-longpress = "true" src="{{detail}}"></image>
+          
         </view>
     </view>
     <view class="bottom">

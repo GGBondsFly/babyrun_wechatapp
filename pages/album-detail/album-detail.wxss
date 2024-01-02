@@ -10,12 +10,15 @@ page {
     margin: 40rpx;
     overflow: hidden;
     width: 670rpx;
+    height: 1000rpx;
+    bottom: 100rpx;
 }
 
 .wrapper .top {
     display: flex;
     justify-content: center;
     padding: 50rpx 40rpx;
+    height: 800rpx;
 }
 
 .wrapper .image-wrapper {
@@ -32,8 +35,17 @@ page {
     z-index: 1;
 }
 
-.wrapper .photo {
+.wrapper .top .image-wrapper .photo {
     border: 1px solid #f2f2f2;
+    box-sizing: initial;
+    flex: none;
+    height: 600rpx;
+    margin-right: 30rpx;
+    margin-left: 30rpx;
+    width: 600rpx;
+    
+    top: 100rpx;
+    
 }
 
 .wrapper .bottom {
@@ -43,6 +55,8 @@ page {
     height: 160rpx;
     justify-content: space-between;
     padding: 42rpx 40rpx;
+    top: 1000rpx;
+    
 }
 
 .wrapper .bottom .title {

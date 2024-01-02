@@ -4,26 +4,68 @@ page {
 }
 
 .list {
-    margin-top: 30rpx;
+    margin-top: 10rpx;
     background: #e4b8b8;
 }
 
 .item {
     align-items: stretch;
     display: flex;
-    height: 220rpx;
-    margin-bottom: 40rpx;
+    height: 300rpx;
+    margin-bottom: 10rpx;
 }
 
-.item .photo {
+.item .background .photo_ori {
     background: #f5f7fa;
-    border: 1px solid #f2f2f5;
+    
     box-sizing: initial;
     flex: none;
-    height: 220rpx;
+    height: 190rpx;
     margin-right: 30rpx;
     margin-left: 30rpx;
     width: 176rpx;
+    position: absolute;
+    top: 100rpx;
+    left: 100rpx;
+    
+}
+.item .background{
+    
+    
+    box-sizing: initial;
+    flex: none;
+    height: 400rpx;
+    margin-right: 30rpx;
+    margin-left: 30rpx;
+    width: 700rpx;
+}
+
+.item .background .photo_gen {
+    background: #f5f7fa;
+    
+    box-sizing: initial;
+    flex: none;
+    height: 190rpx;
+    margin-right: 30rpx;
+    margin-left: 30rpx;
+    width: 176rpx;
+    position: absolute;
+    top: 100rpx;
+    right: 100rpx;
+}
+
+.item .background .arrows {
+    
+    
+    box-sizing: initial;
+    flex: none;
+    height: 100rpx;
+    margin-right: 30rpx;
+    margin-left: 30rpx;
+    width: 176rpx;
+    position: absolute;
+    top: 145rpx;
+    right: 250rpx;
 }
 
 .item .right {
