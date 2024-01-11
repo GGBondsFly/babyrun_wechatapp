@@ -10,19 +10,19 @@ Page({
         statusBarHeight: app.globalData.statusBarHeight,
     },
     onLoad: function() {
-      if (wx.createInterstitialAd) {
-        interstitialAd = wx.createInterstitialAd({
-          adUnitId: 'adunit-566bd72e0f6f7ace'
-        })
-        interstitialAd.onLoad(() => {console.log('onLoad event emit')})
-        interstitialAd.onError((err) => {console.log('onError event emit', err)})
-        interstitialAd.onClose(() => {})
-      }
-      if (interstitialAd) {
-        interstitialAd.show().catch((err) => {
-          console.error(err)
-        })
-      }
+    //   if (wx.createInterstitialAd) {
+    //     interstitialAd = wx.createInterstitialAd({
+    //       adUnitId: 'adunit-566bd72e0f6f7ace'
+    //     })
+    //     interstitialAd.onLoad(() => {console.log('onLoad event emit')})
+    //     interstitialAd.onError((err) => {console.log('onError event emit', err)})
+    //     interstitialAd.onClose(() => {})
+    //   }
+    //   if (interstitialAd) {
+    //     interstitialAd.show().catch((err) => {
+    //       console.error(err)
+    //     })
+    //   }
       this.loadHostList()
       this.checkUser()
     },

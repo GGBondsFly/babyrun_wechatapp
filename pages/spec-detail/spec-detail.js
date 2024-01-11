@@ -32,15 +32,16 @@ Page({
                 compress(file.tempFilePath, 1024*1024, 80, path=> {
                     console.log('r:'+path)
                     app.globalData.alphaImage = path
+                    wx.hideLoading()
+                    wx.redirectTo({
+                        url: "../cropper/cropper"
+                    });
                     // wx.hideLoading()
                     // wx.redirectTo({
                     //     url: "../preview/preview"
                     // });
                 })
-                wx.hideLoading()
-                wx.redirectTo({
-                    url: "../cropper/cropper"
-                });
+                
 
             }
         })

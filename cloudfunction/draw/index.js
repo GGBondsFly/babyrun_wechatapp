@@ -53,8 +53,23 @@ async function callapi (id, fileurl, prompt){
     })
   };
   console.info("post to draw with ", options)
-//   return mockDrawApi(options).then(function (res) {
-  return request(options).then(function (res) {
+  //set Rotation training mode five times.if success, return 
+  // let count = 0
+  // let ret = ""
+  // while(count < 5){
+  //   ret = await request(options)
+  //   console.info("draw image: ", ret)
+  //   let retobj = JSON.parse(ret)
+  //   if(retobj.success == true){
+  //     console.info("success draw image: ", ret)
+  //     return savephoto(id, ret)
+  //   }
+  //   count++
+  // }
+  // console.info("failed post to draw image: ", ret)
+  // return updateDb(id, {status: -2})
+  return mockDrawApi(options).then(function (res) {
+//   return request(options).then(function (res) {
     // 请求成功，上传文件
     let ret = JSON.parse(res)
     console.info("success draw image: ", ret)

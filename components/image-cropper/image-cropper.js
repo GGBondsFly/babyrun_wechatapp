@@ -866,6 +866,7 @@ Component({
             },
             backindex(event){
                 console.log("backindex")
+                app.globalData.alphaImage = null
                 wx.redirectTo({
                     url: '../../pages/spec-detail/spec-detail',
                   });

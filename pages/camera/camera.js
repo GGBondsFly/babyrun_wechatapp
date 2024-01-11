@@ -1,4 +1,4 @@
-const { generateBase64AlphaPhoto } = require("../../api/photo.js");
+// const { generateBase64AlphaPhoto } = require("../../api/photo.js");
 const { compress } = require("../../utils");
 var app = getApp();
 

@@ -48,7 +48,7 @@ App({
       nickName: '',
       photos: [],
       id: null,
-      prompt: " 1baby, chinese baby, 1 years old",
+      prompt: " newborn chinese boy wrapped in a gray blanket,close eyes, in the style of light sky-blue and silver, gutai group, comfycore, #myportfolio, unpolished, elegantly formal",
       userphoto: [],
   }
 });

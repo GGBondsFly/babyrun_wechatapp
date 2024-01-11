@@ -18,6 +18,7 @@ Page({
         //         src:r,
         //     });
         // })
+        console.log("onload",app.globalData.alphaImage)
         this.setData({
             src:app.globalData.alphaImage,
         });

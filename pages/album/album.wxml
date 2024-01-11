@@ -2,7 +2,7 @@
 <view class="page" bindtap="tapPage">
   <view class="list">
     <view wx:for="{{photos}}" wx:key="index">
-      <van-swipe-cell right-width="{{ 65 }}" async-close bind:close="deletePhoto" data-index="{{index}}">
+      <van-swipe-cell right-width="{{ 65 }}" async-close bind:close="deletePhoto" data-index="{{index}}" disabled="{{state=='1'}}" bind:open="onOpen">
         <view class="item" data-index="{{index}}">
           <image class="background" lazyLoad="true" mode="aspectFit" src="../../assets/icon/ablum_block_ground.png">
             <image class="arrows" lazyLoad="true" mode="aspectFit" show-menu-by-longpress = "true" src="../../assets/icon/arrows.png"></image>
@@ -12,17 +12,7 @@
             <view bindtap="gotoDetail_gen" data-index="{{index}}">
               <image class="photo_gen" lazyLoad="true" mode="aspectFill" show-menu-by-longpress = "true"  src="{{item.genFileID}}"></image>
             </view>
-            <view class="right">
-              <view>
-                  <view class="name">{{item.name}}</view>
-                  <view class="detail">
-                      <text wx:if="{{item.width}}">{{item.width}}*{{item.height}}mm</text>
-                      <text wx:if="{{item.width}}" class="split"></text>
-                  </view>
-                  
-              </view>
-              
-            </view>
+            
           </image>
         </view>
         <view slot="right" style="height: 100%; width: 100%; display: flex; align-items: center; justify-content:center;">删除</view>
@@ -33,7 +23,7 @@
 <tab-shadow></tab-shadow>
 <view class="empty" wx:if="{{!photos.length}}">
     <image src="../../assets/cdn/empty-album.png"></image>
-    <view>暂无照片，快去拍张证件照吧</view>
+    <view>暂无照片，快去拍一张吧</view>
     <button bindtap="gotoSpec" class="btn"> 去拍照 <authorize></authorize>
     </button>
 </view>

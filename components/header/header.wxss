@@ -32,7 +32,7 @@
     margin: 0;
 }
 
-.header .navigation .image {
+.header .navigation image {
     height: 16px;
     width: 16px;
 }

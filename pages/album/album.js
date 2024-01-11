@@ -1,4 +1,4 @@
-const { listUserPhoto, deleteUserPhoto } = require("../../api/user_photo");
+// const { listUserPhoto, deleteUserPhoto } = require("../../api/user_photo");
 
 var app = getApp();
 
@@ -6,15 +6,31 @@ Page({
     data: {
       next_id: 0,
       photos: [],
-      moreIndex: -1
+      moreIndex: -1,
+      selected:[]
     },
     onLoad: function(t) {
     },
+    onOpen(event){
+      // 根据id选择instance，id为van-swipe-cell元素设置的id
+      let instance = this.selectComponent(`#${event.target.id}`);
+      this.data.selected.push(instance);
+    },
+    onTap(){//这是点击其他区域时，根据id让当前打开的元素关闭
+      // 循环关闭
+      this.data.selected.forEach(function (instance) {
+        instance.close();
+      });
+      // 清空
+      this.data.selected = [];
+    },
     onShow: function() {
+      
       this.getPhotos().then(res => {
         this.setData({
           photos: res
         })
+        console.log("photosonshow",res)
       })
     },
 
@@ -53,7 +69,12 @@ Page({
       // const user = await db.collection('user').get()
       // const userinfo = user.data[0]
       // var photos = userinfo.photos
+      const user = await db.collection('user').get()
+      const userinfo = user.data[0]
+
+      app.globalData.photos = userinfo.photos
       var photos = app.globalData.photos
+      console.log("photos222",photos)
       const id_list = []
       for(var i = 0; i < photos.length; i++){
         id_list.push(photos[i]["_id"])
@@ -152,21 +173,61 @@ Page({
       });
     },
     deletePhoto: function(event) {
+
       const { position, instance } = event.detail;
+      console.log(event)
       if (position==="right") {
         var index = event.currentTarget.dataset.index
-        deleteUserPhoto(this.data.photos[index].id).then(res => {
+        console.log("deletePhoto",this.data.photos[index])
+        var _id = this.data.photos[index].id
+        const db = wx.cloud.database({})
+        const userid = app.globalData.id
+        db.collection("user").doc(userid).update({
+          data: {
+            photos: db.command.pull({
+              _id: _id
+            })
+          }
+        }).then(res => {
           this.data.photos.splice(index, 1)
-          this.setData(
-            {
-              photos: this.data.photos
-            }  
-          )
+          // app.globalData.photos.splice(index, 1)
+          
+          this.setData({
+              photos: this.data.photos,
+              index: index
+            })
+          //delete photo from globaldata.photos
+          
+          console.log("deletePhoto1111",app.globalData.photos)
+          console.log("deletePhoto222",this.data.photos)
           instance.close();
           wx.showToast({
             title: "照片已删除"
           })
         })
+        
+        // instance.close();
+        // //reload the page
+        // this.onShow()
+
+
+        // wx.showToast({
+        //   title: "照片已删除"
+        // })
+        
+        
+        // deleteUserPhoto(this.data.photos[index].id).then(res => {
+        //   this.data.photos.splice(index, 1)
+        //   this.setData(
+        //     {
+        //       photos: this.data.photos
+        //     }  
+        //   )
+        //   instance.close();
+        //   wx.showToast({
+        //     title: "照片已删除"
+        //   })
+        // })
       }
     },
     gotoSpec: function(t) {
