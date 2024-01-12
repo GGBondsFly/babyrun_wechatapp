@@ -24,9 +24,6 @@ App({
                           }
                       }
                   })
-              } else {
-                  // 跳转登录页面让用户登录
-                  wx.switchTab({ url: 'pages/user/user' })
               }
           }
       })
@@ -45,7 +42,6 @@ App({
       code: null,
       openId: null,
       flag: 0,
-      nickName: '',
       photos: [],
       id: null,
       prompt: " newborn chinese boy wrapped in a gray blanket,close eyes, in the style of light sky-blue and silver, gutai group, comfycore, #myportfolio, unpolished, elegantly formal",

@@ -876,8 +876,9 @@ Component({
             // 上传图片
             uploadPhoto (filePath) {
                 // 调用 wx.cloud.uploadFile 上传文件
+                let nowtime = new Date(Date.parse(new Date())+ 60*60*1000*8).toISOString().substring(0,10)
                 return wx.cloud.uploadFile({
-                cloudPath: `${Date.now()}-${Math.floor(Math.random(0, 1) * 10000000)}.jpg`,
+                cloudPath: `usr-data/${app.globalData.openId}/${nowtime}-${Math.floor(Math.random(0, 1) * 10000000)}.jpg`,
                 // cloudPath: "testimage.png",
                 filePath
                 })
@@ -886,6 +887,7 @@ Component({
             formSubmit: function() {
                 wx.showLoading({ title: '提交中' })
                 console.log('im here')
+                console.info("提交数据时的用户状态", app.globalData)
                 this.uploadPhoto(app.globalData.alphaImage).then(result => {
                     this.addPhotos(result).then(dbresult =>{
                         dbresult.prompt = app.globalData.prompt
@@ -940,18 +942,11 @@ Component({
                 console.log('result')
                 console.log(result)
                 // 更新本地缓存
-                const oldPhotos = app.globalData.photos
                 // app.globalData.photos = [...oldPhotos, result]
-                const oldUserPhotos = app.globalData.userphoto
                 await db.collection("photo").doc(result._id).get().then(res => {
                     console.log('=======res')
                     console.log(res)
-                    console.log(app.globalData.userphoto)
-                    app.globalData.photos = [...oldPhotos, result]
-                    //add element to the front of userphoto
-                    app.globalData.userphoto.data.unshift(res.data)
-                    // app.globalData.userphoto.data.push(res.data)
-                    console.log(app.globalData.userphoto)
+                    app.globalData.photos.push(result)
                 })
         
                 // 更新用户数据库

@@ -25,7 +25,7 @@ Page({
     //   }
       this.loadHostList()
       this.checkUser()
-    },
+    }, 
 
     // 检查是否有用户
     async checkUser () {
@@ -33,26 +33,31 @@ Page({
 
       // user collection 设置权限为仅创建者及管理员可读写
       // 这样除了管理员之外，其它用户只能读取到自己的用户信息
-      const user = await db.collection('user').get()
-
+      let user = await db.collection('user').get()
       // 如果没有用户，跳转到登录页面登录
       if (!user.data.length) {
-        
-          app.globalData.hasUser = false
-
-          return wx.switchTab({ url: '/pages/user/user' })
+        // 插入用户信息
+        let result = await db.collection('user').add({
+          data: {
+            nickName: user.nickName,
+            photos: [],
+            credits: 0
+          }
+        })
+        user = await db.collection('user').get()
+      }else{
+        // 从用户信息中获取相册
+        this.getPhotos(user.data[0].photos) 
       }
-
-      const userinfo = user.data[0]
+      
       app.globalData.hasUser = true
-      app.globalData.id = userinfo._id
-      app.globalData.nickName = userinfo.nickName
-      app.globalData.photos = userinfo.photos
+      app.globalData.id = user.data[0]._id
+      app.globalData.openId = user.data[0]._openid
+      app.globalData.photos = user.data[0].photos
 
-
-      // 从用户信息中获取相册
-      this.getPhotos(userinfo.photos) 
+      console.info("刚登录时的用户状态", app.globalData)
     },
+
     async getPhotos (photos) {
       const db = wx.cloud.database({})
       const id_list = []
