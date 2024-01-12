@@ -311,7 +311,7 @@ Component({
                         height: Math.round(this.data.height * this.data.export_scale),
                         destWidth: this.data.width * this.data.export_scale,
                         destHeight: Math.round(this.data.height) * this.data.export_scale,
-                        fileType: 'png',
+                        fileType: 'jpg',
                         quality: this.data.quality,
                         canvasId: this.data.el,
                         success: (res) => {
@@ -877,7 +877,7 @@ Component({
             uploadPhoto (filePath) {
                 // 调用 wx.cloud.uploadFile 上传文件
                 return wx.cloud.uploadFile({
-                cloudPath: `${Date.now()}-${Math.floor(Math.random(0, 1) * 10000000)}.png`,
+                cloudPath: `${Date.now()}-${Math.floor(Math.random(0, 1) * 10000000)}.jpg`,
                 // cloudPath: "testimage.png",
                 filePath
                 })
@@ -974,7 +974,7 @@ Component({
                         height: Math.round(this.data.height * this.data.export_scale),
                         destWidth: this.data.width * this.data.export_scale,
                         destHeight: Math.round(this.data.height) * this.data.export_scale,
-                        fileType: 'png',
+                        fileType: 'jpg',
                         quality: this.data.quality,
                         canvasId: this.data.el,
                         success: (res) => {

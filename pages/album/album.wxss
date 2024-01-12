@@ -11,8 +11,8 @@ page {
 .item {
     align-items: stretch;
     display: flex;
-    height: 300rpx;
-    margin-bottom: 10rpx;
+    height: 250rpx;
+    margin-bottom: 20rpx;
 }
 
 .item .background .photo_ori {
@@ -25,13 +25,13 @@ page {
     margin-left: 30rpx;
     width: 176rpx;
     position: absolute;
-    top: 100rpx;
+    top: 35rpx;
     left: 100rpx;
     
 }
 .item .background{
     
-    
+    align-items:center;
     box-sizing: initial;
     flex: none;
     height: 400rpx;
@@ -50,7 +50,7 @@ page {
     margin-left: 30rpx;
     width: 176rpx;
     position: absolute;
-    top: 100rpx;
+    top: 35rpx;
     right: 100rpx;
 }
 
@@ -64,7 +64,7 @@ page {
     margin-left: 30rpx;
     width: 176rpx;
     position: absolute;
-    top: 145rpx;
+    top: 80rpx;
     right: 250rpx;
 }
 
@@ -175,6 +175,11 @@ page {
     margin-top: 326rpx;
     text-align: center;
 }
+.refresh {
+    width: 100%;
+    color: #fff;
+    text-align: center;
+}
 
 .empty image {
     display: block;
@@ -207,4 +212,48 @@ page {
   color: #fff;
   text-align: center;
   background-color: #f44;
+}
+
+.box {
+  width: 702rpx;
+  margin: 10rpx auto;
+  overflow: hidden;
+  background: rgb(194, 188, 188);
+  border-radius: 5px;
+  padding: 5px;
+  box-sizing: border-box;
+  border-radius: 10px
+}
+
+.r {
+  white-space: nowrap;
+  animation: 10s loop linear infinite normal;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 26rpx;
+  color: rgb(255, 255, 255);
+}
+
+@keyframes loop {
+  0% {
+    transform: translateX(350px);
+    -webkit-transform: translateX(350px);
+  }
+
+  100% {
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+  }
+}
+
+@-webkit-keyframes loop {
+  0% {
+    transform: translateX(300px);
+    -webkit-transform: translateX(300px);
+  }
+
+  100% {
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+  }
 }

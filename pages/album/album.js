@@ -126,7 +126,24 @@ Page({
       }
       return photoData
     },
-
+    onPullDownRefresh () {
+      wx.showLoading({
+        title: '加载中',
+        mask: true
+      });
+      this.getPhotos().then(res => {
+        this.setData({
+          photos: res
+        })
+        wx.stopPullDownRefresh()
+        wx.hideLoading()
+        wx.showToast({
+          title: '刷新成功',
+          icon: 'success',
+          duration: 2000
+        })
+      })
+    },
     onHide: function() {
     },
     // onReachBottom: function() {
