@@ -24,7 +24,7 @@ async function drawfunc (id, fileid, prompt){
     fileList: [fileid]
   }).then(function(res) {
     console.info("get file url success")
-    return callapi(id, res.fileList[0].tempFileURL, prompt)
+    return callapi(id, fileid, res.fileList[0].tempFileURL, prompt)
   }).catch(function(err) {
     // 获取文件url失败`
     console.info("get file url failed", err)
@@ -58,7 +58,7 @@ async function request_server(options, times=3){
   })
 }
 
-async function callapi (id, fileurl, prompt){
+async function callapi (id, fileid, fileurl, prompt){
   // 发起绘画请求
   const options = {
     url: "https://api.zhishuyun.com/midjourney/imagine?token=2d0da011f83947aa91545bca51cd366d",
@@ -77,7 +77,7 @@ async function callapi (id, fileurl, prompt){
     // 请求成功，上传文件
     let ret = JSON.parse(res)
     console.info("success draw image: ", ret)
-    return savephoto(id, ret)
+    return savephoto(id, fileid, ret)
   }).catch(function (err) {
     // 请求失败，更新数据库状态为生成失败
     console.info("failed post to draw image: ", err)
@@ -85,10 +85,10 @@ async function callapi (id, fileurl, prompt){
   });
 }
 
-async function savephoto (id, drawret){
+async function savephoto (id, fileid, drawret){
   downloadBin(drawret.image_url).then(function (res) {
     console.info("download from remote success")
-    return upToWx(id, res, drawret.image_width, drawret.image_height)
+    return upToWx(id, fileid, res, drawret.image_width, drawret.image_height)
   }).catch(function (err) {
     console.info("failed upload draw image: ", err)
     return updateDb(id, {status: -3})
@@ -106,10 +106,14 @@ async function downloadBin(url){
   return request(options)
 }
 
-async function upToWx(id, res, width, height){
+async function upToWx(id, srcfileid, res, width, height){
   let buf = Buffer.from(res)
+  let srcname = srcfileid.split("/")
+
+  let genPath = `${srcname[3]}/${srcname[4]}/${srcname[5].split(".")[0]}-gen.png`
+  console.log(genPath)
   cloud.uploadFile({
-    cloudPath: `gen_${Date.now()}-${Math.floor(Math.random(0, 1) * 10000000)}.png`,
+    cloudPath: genPath,
     fileContent: buf
   }).then(function (res) {
     console.log("up generate image success!")
