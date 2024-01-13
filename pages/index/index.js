@@ -1,4 +1,4 @@
-const { listRecommendPhotoSize, listPhotoSize } = require("../../api/size_list.js");
+// const { listRecommendPhotoSize, listPhotoSize } = require("../../api/size_list.js");
 
 var app = getApp()
 let interstitialAd = null
@@ -23,7 +23,7 @@ Page({
     //       console.error(err)
     //     })
     //   }
-      this.loadHostList()
+    //   this.loadHostList()
       this.checkUser()
     },
 
@@ -108,28 +108,28 @@ Page({
         url: "../search/search"
       })
     },
-    clickTab: function(o) {
-      var name = o.detail.name
-      this.setData({active: name})
-      if (name==99) {
-        this.loadHostList()
-      } else {
-        listPhotoSize({
-          category_id: name
-        }).then(data => {
-          this.setData({
-            specs: data
-          })
-        })
-      }
-    },
-    loadHostList: function() {
-      listRecommendPhotoSize().then(data => {
-        this.setData({
-          specs: data
-        })
-      })
-    },
+    // clickTab: function(o) {
+    //   var name = o.detail.name
+    //   this.setData({active: name})
+    //   if (name==99) {
+    //     this.loadHostList()
+    //   } else {
+    //     listPhotoSize({
+    //       category_id: name
+    //     }).then(data => {
+    //       this.setData({
+    //         specs: data
+    //       })
+    //     })
+    //   }
+    // },
+    // loadHostList: function() {
+    //   listRecommendPhotoSize().then(data => {
+    //     this.setData({
+    //       specs: data
+    //     })
+    //   })
+    // },
     onShareAppMessage: function() {
         return {
             title: "快图证件照",

@@ -1,4 +1,4 @@
-const { addUserPhotoWithBase64Alpha } = require("../../api/user_photo.js");
+// const { addUserPhotoWithBase64Alpha } = require("../../api/user_photo.js");
 import settings from "../../settings"
 import Dialog from '@vant/weapp/dialog/dialog'
 var app = getApp();
@@ -154,40 +154,40 @@ Page({
     },
 
 
-    gen() {
-      wx.showLoading({
-        title: "制作中...",
-        mask: true
-      });
-      const {
-        r,
-        g,
-        b
-      } = this.hexToRgb(this.data.color)
-      addUserPhotoWithBase64Alpha({
-        image_base64: app.globalData.alphaImage, 
-        r: r, 
-        g: g, 
-        b: b,
-        openid: this.data.openid,
-        name: this.data.name,
-        width: this.data.width,
-        height: this.data.height,
-        pix_width: this.data.pix_width,
-        pix_height: this.data.pix_height,
-      }).then(result => {
-        wx.hideLoading()
-        wx.navigateTo({
-          url: "../save-image/save-image?image=" + result.url + "&size=" + result.size
-        });
-      }).catch(e => {
-        wx.hideLoading()
-        console.log(e)
-        wx.showToast({
-          title: "[5002] 选择图片制作失败，请尝试或客服处理！",
-          icon: "none",
-          duration: 2000
-        });
-      })
-    }
+    // gen() {
+    //   wx.showLoading({
+    //     title: "制作中...",
+    //     mask: true
+    //   });
+    //   const {
+    //     r,
+    //     g,
+    //     b
+    //   } = this.hexToRgb(this.data.color)
+    //   addUserPhotoWithBase64Alpha({
+    //     image_base64: app.globalData.alphaImage, 
+    //     r: r, 
+    //     g: g, 
+    //     b: b,
+    //     openid: this.data.openid,
+    //     name: this.data.name,
+    //     width: this.data.width,
+    //     height: this.data.height,
+    //     pix_width: this.data.pix_width,
+    //     pix_height: this.data.pix_height,
+    //   }).then(result => {
+    //     wx.hideLoading()
+    //     wx.navigateTo({
+    //       url: "../save-image/save-image?image=" + result.url + "&size=" + result.size
+    //     });
+    //   }).catch(e => {
+    //     wx.hideLoading()
+    //     console.log(e)
+    //     wx.showToast({
+    //       title: "[5002] 选择图片制作失败，请尝试或客服处理！",
+    //       icon: "none",
+    //       duration: 2000
+    //     });
+    //   })
+    // }
 });

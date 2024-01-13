@@ -72,8 +72,8 @@ async function callapi (id, fileurl, prompt){
     })
   };
   console.info("post to draw with ", options)
-//   return mockDrawApi(options).then(function (res) {
-  return request_server(options).then(function (res) {
+  return mockDrawApi(options).then(function (res) {
+//   return request_server(options).then(function (res) {
     // 请求成功，上传文件
     let ret = JSON.parse(res)
     console.info("success draw image: ", ret)
