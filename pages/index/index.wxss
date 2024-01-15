@@ -1,20 +1,26 @@
 Page{
-    background-color: #e4b8b8;
-   }
+  background-color: #f5d2d2;
+ }
 
 .page-section-title{
-    font-size: 25px;
-    color: rgb(255, 255, 255);
+  font-size: 25px;
+  color: rgb(255, 255, 255);
 }
 
 
-  .swiper-item{
-    display: block;
-    height: 150px;
-    border-radius: 10rpx;
-  }
-  .img{
-    width: 100%;
-    height: 100%;
-    border-radius: 30px;
-  }
+.swiper-item{
+  display: block;
+  height: 150px;
+  border-radius: 10rpx;
+}
+.img{
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+}
+
+.mainImg{
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+}

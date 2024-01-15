@@ -1,20 +1,24 @@
 <header nav="{{false}}" title="赤子宝贝"></header>
-<view style="margin-left: 35rpx;margin-right: 35rpx;margin-top: 35rpx;"class="page-section-title">
-    <text>Hello,欢迎回来</text>
-</view>
+<!-- <view style="margin-left: 35rpx;margin-right: 35rpx;margin-top: 35rpx;margin-bottom: 35rpx"class="page-section-title">
+    <text>欢迎回来 今天是2024-01-14 \n </text>
+    <text>距离龙年宝宝见到你又近了一天！\n      </text>
+</view> -->
 <view style="display: flex; flex-direction: column;">
-  
-
+  <view style="display: flex; width: 100%; height: 200rpx; margin: 10rpx 0rpx 0rpx 0rpx;">
+    <view style="margin-left: 35rpx;margin-right: 35rpx;">
+      <image class="mainImg" src="../../assets/icon/title_img2.png" style="width: 680rpx; height: 200rpx;" bindtap="gotoOneInchSpec"></image>
+    </view>
+  </view>
   <view style="display: flex; width: 100%; height: 750rpx; margin: 0rpx 0rpx 30rpx 0rpx;">
     <view style="margin-left: 35rpx;margin-right: 35rpx;">
-      <image src="../../assets/icon/tab1.png" style="width: 680rpx; height: 750rpx;" bindtap="gotoOneInchSpec"></image>
+      <image class="mainImg" src="../../assets/icon/tab1.gif" style="width: 680rpx; height: 750rpx;" bindtap="gotoOneInchSpec"></image>
     </view>
     
   </view>
   <view style="margin-left: 35rpx;margin-right: 35rpx;margin-bottom: 30rpx;"class="swiper">
     <swiper
         indicator-dots="{{true}}" autoplay="{{true}}" circular="{{true}}" vertical="{{false}}"
-        interval="{{5000}}" duration="{{500}}" previous-margin="{{0}}px" next-margin="{{0}}px">
+        interval="{{4000}}" duration="{{1500}}" previous-margin="{{0}}px" next-margin="{{0}}px">
         <swiper-item>
             <image class="img" src="../../assets/icon/swiper1.png" style="width: 680rpx; height: 300rpx;" bindtap="gotoOneInchSpec"></image>
         </swiper-item>

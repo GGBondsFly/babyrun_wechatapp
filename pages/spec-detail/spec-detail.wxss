@@ -22,7 +22,7 @@ Page{
 .info-data {
   margin-left: 36rpx;
   margin-top: 19rpx;
-  display: flex;
+  display: column;
   flex-direction: row;
   font-size: 30rpx;
 }

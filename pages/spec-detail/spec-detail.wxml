@@ -1,12 +1,14 @@
 <header title="{{data.name}}"></header>
 
 <view class="info">
-  <view class="info-title">规则详情</view>
+  <view class="info-title">按照以下说明，确保预测效果</view>
   
   
   <view class="info-data">
-    <view class="info-data-title">照片要求</view>
-    <view class="info-data-content">请截取宝宝面部（勿包含边框或文字）</view>
+    <!-- <view class="info-data-title">裁剪建议</view> -->
+    <view class="info-data-content">1.优先上传相册电子版彩超</view>
+    <view class="info-data-content">2.裁剪范围勿包含边框或文字 </view>
+    <view class="info-data-content">3.裁剪范围尽量只包含宝宝面部 </view>
   </view>
   
 </view>
@@ -14,8 +16,8 @@
 
 <view style="margin-top: 35rpx;">
   <view style="display: flex; margin-left: 35rpx;">
-    <image src="../../assets/icon/guide_icon.png" style="width: 44rpx; height: 44rpx;"></image>
-    <view style="margin-left: 26rpx; font-weight: 700; font-size: 34rpx;"class="navigate">效果演示</view>
+    <image src="../../assets/icon/camera.png" style="width: 44rpx; height: 44rpx;"></image>
+    <view style="margin-left: 26rpx; font-weight: 700; font-size: 34rpx;"class="navigate">裁剪建议示范</view>
   </view>
   <swiper 
     autoplay="true"
@@ -33,9 +35,9 @@
     <swiper-item>
       <image src="../../assets/icon/guide4.png" class="guide-item"></image>
     </swiper-item>
-    <swiper-item>
+    <!-- <swiper-item>
       <image src="../../assets/icon/guide5.png" class="guide-item"></image>
-    </swiper-item>
+    </swiper-item> -->
   </swiper>
 </view>
 
