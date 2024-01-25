@@ -8,16 +8,18 @@ const db = cloud.database()
 const max_retry_times = 3
 
 // 云函数入口函数
-exports.main = async (event, context) => {
+exports.main = async (event, context) => new Promise(async (resolve, reject) => {
   const wxContext = cloud.getWXContext()
   let fileid = event.fileid
   let prompt = event.prompt
   let openid = wxContext.OPENID
   let appid = wxContext.APPID
   let unionid = wxContext.UNIONID
+
   console.log('draw main')
-  return drawfunc(event.id, fileid, prompt)
-};
+  let retData = await drawfunc(event.id, fileid, prompt)
+  resolve(retData)
+});
 
 async function drawfunc (id, fileid, prompt){
   return cloud.getTempFileURL({
@@ -72,8 +74,8 @@ async function callapi (id, fileid, fileurl, prompt){
     })
   };
   console.info("post to draw with ", options)
-  return mockDrawApi(options).then(function (res) {
-//   return request_server(options).then(function (res) {
+  // return mockDrawApi(options).then(function (res) {
+  return request_server(options).then(function (res) {
     // 请求成功，上传文件
     let ret = JSON.parse(res)
     console.info("success draw image: ", ret)
@@ -132,11 +134,12 @@ async function upToWx(id, srcfileid, res, width, height){
 }
 
 async function updateDb(id, data){
-  return db.collection('photo').doc(id).update({
+  const result = await db.collection('photo').doc(id).update({
     data: data
   }).then(
     function(res) {
       console.log("update db success!, id: ", id)
     }
   )
+  return result
 }
