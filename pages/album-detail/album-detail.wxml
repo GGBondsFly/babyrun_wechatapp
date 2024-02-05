@@ -1,22 +1,21 @@
 <header title="预览"></header>
+
 <view class="wrapper">
     <view class="top">
+        
         <view class="image-wrapper">
-          <image class="photo" lazyLoad="true" mode="aspectFit" show-menu-by-longpress = "true" src="{{detail}}"></image>
+          <canvas class="canvas" type="2d" id="canvas1"  disable-scroll="true" style="width: 598rpx; height: 598rpx;"></canvas>
           
         </view>
     </view>
+    <view class="specs">
+        <view class="title">快快保存吧～</view>
+    </view>
     <view class="bottom">
-        <view class="specs">
-          <view class="title">电子证件照</view>
-          <view class="infos">
-            <text wx:if="{{detail.width}}">{{detail.width}}*{{detail.height}}mm</text>
-            <view wx:if="{{detail.width}}"></view>
-            {{detail.pix_width}}*{{detail.pix_height}}px
-            <view></view>
-            {{detail.size}}KB
-          </view>
-        </view>
-        <button bindtap="saveImage" class="save-btn">下载</button>
+        
+        <button bindtap="saveImageupleft" class="save-btn1">左上</button>
+        <button bindtap="saveImageupright" class="save-btn3">右上</button>
+        <button bindtap="saveImagedownleft" class="save-btn2">左下</button>
+        <button bindtap="saveImagedownright" class="save-btn4">右下</button>
     </view>
 </view>

@@ -1,0 +1,16 @@
+<header title="预览"></header>
+<view class="wrapper">
+    <view class="top">
+        <view class="image-wrapper">
+          <image class="photo" lazyLoad="true" mode="aspectFit" show-menu-by-longpress = "true" src="{{detail}}"></image>
+          
+        </view>
+    </view>
+    <view class="bottom">
+        <view class="specs">
+          <view class="title">再来一张吧～</view>
+        </view>
+        <button bindtap="regenerate" class="save-btn">重新生成</button>
+
+    </view>
+</view>

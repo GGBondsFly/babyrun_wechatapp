@@ -18,7 +18,7 @@ page {
     display: flex;
     justify-content: center;
     padding: 50rpx 40rpx;
-    height: 750rpx;
+    height: 800rpx;
 }
 
 .wrapper .image-wrapper {
@@ -34,23 +34,14 @@ page {
     width: 200rpx;
     z-index: 1;
 }
-.wrapper .top .image-wrapper .canvas{
-    border: 1px solid #f2f2f2;
-    box-sizing: initial;
-    flex: none;
-    
-    margin-right: 30rpx;
-    margin-left: 30rpx;
-    
-    top: 50rpx;
-}
-.wrapper .top .image-wrapper .canvas .photo {
+
+.wrapper .top .image-wrapper .photo {
     border: 1px solid #f2f2f2;
     box-sizing: initial;
     flex: none;
     height: 600rpx;
     margin-right: 30rpx;
-    margin-left: 35rpx;
+    margin-left: 30rpx;
     width: 600rpx;
     
     top: 100rpx;
@@ -81,9 +72,7 @@ page {
     line-height: 36rpx;
     margin-top: 4rpx;
 }
-.wrapper .specs{
-    text-align:center;
-}
+
 .wrapper .bottom .infos view {
     border-right: 1px solid #d8d9df;
     display: inline-block;
@@ -93,7 +82,7 @@ page {
     width: 0;
 }
 
-.save-btn1 {
+.save-btn {
   background: #e4b8b8;
     border-radius: 40rpx;
     color: #fff;
@@ -102,41 +91,5 @@ page {
     height: 88rpx;
     line-height: 88rpx;
     margin: 0;
-    width: 120rpx;
-}
-.save-btn2 {
-  background: #e4b8b8;
-    border-radius: 40rpx;
-    color: #fff;
-    font-size: 30rpx;
-    font-weight: 700;
-    height: 88rpx;
-    line-height: 88rpx;
-    margin: 0;
-    width: 120rpx;
-    
-}
-.save-btn3 {
-  background: #e4b8b8;
-    border-radius: 40rpx;
-    color: #fff;
-    font-size: 30rpx;
-    font-weight: 700;
-    height: 88rpx;
-    line-height: 88rpx;
-    margin: 0;
-    width: 120rpx;
-    
-}
-.save-btn4 {
-  background: #e4b8b8;
-    border-radius: 40rpx;
-    color: #fff;
-    font-size: 30rpx;
-    font-weight: 700;
-    height: 88rpx;
-    line-height: 88rpx;
-    margin: 0;
-    width: 120rpx;
-    
+    width: 200rpx;
 }

@@ -906,14 +906,14 @@ Component({
                     wx.hideLoading()
                     console.log('im here2')
                     wx.switchTab({
-                        url: "../index/index"
+                        url: "../album/album"
                     });
                     console.log('im here3')
                     }).catch(() => {
                         wx.hideLoading()
                         wx.showToast({ title: '上传图片错误', icon: 'error' })
                         wx.switchTab({
-                        url: "../index/index"
+                        url: "../spec-detail/spec-detail"
                     });
                 })
             

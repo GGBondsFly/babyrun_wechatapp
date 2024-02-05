@@ -8,7 +8,8 @@
     "pages/album/album",
     "pages/album-detail/album-detail",
     "pages/cropper/cropper",
-    "pages/user/user"
+    "pages/user/user",
+    "pages/album-detail-ori/album-detail-ori"
   ],
   "window": {
     "backgroundTextStyle": "dark",

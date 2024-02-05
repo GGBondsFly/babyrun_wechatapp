@@ -112,7 +112,9 @@ Page({
       const photoData = []
       for (var i = 0; i < userphoto.data.length; i++) {
           const dict = {}
+          dict["status"] = userphoto.data[i].status
           if (userphoto.data[i].status == 1){
+            
             dict["genFileID"] = "../../assets/icon/generating.png"}
           if (userphoto.data[i].status == 'failed'){
             dict["genFileID"] = "../../assets/icon/failed.png"}
@@ -177,17 +179,39 @@ Page({
         app.globalData.photo = this.data.photos[index].oriFileID
         
          wx.navigateTo({
-            url: "../album-detail/album-detail"
+            url: "../album-detail-ori/album-detail-ori"
         });
     },
     gotoDetail_gen: function(t) {
       var index = t.currentTarget.dataset.index;
       app.globalData.photo = this.data.photos[index].genFileID
+      
+
       console.log("gotoDetail")
       console.log(this.data.photos[index], index)
-       wx.navigateTo({
+      console.log('status',this.data.photos[index])
+      if (this.data.photos[index].status == 0){
+        wx.navigateTo({
           url: "../album-detail/album-detail"
-      });
+        });
+      }
+      else{
+        if (this.data.photos[index].status == 1){
+          app.globalData.photo = '../../assets/icon/generating.png'
+          wx.navigateTo({
+            url: "../album-detail-ori/album-detail-ori"
+          });
+        }
+        else{
+          app.globalData.photo = '../../assets/icon/failed.png'
+          wx.navigateTo({
+            url: "../album-detail-ori/album-detail-ori"
+          });
+        }
+      }
+      //  wx.navigateTo({
+      //     url: "../album-detail/album-detail"
+      // });
     },
     deletePhoto: function(event) {
 
