@@ -6,20 +6,28 @@ const fs = require('fs')
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV }) // 使用当前云环境
 const db = cloud.database()
 const max_retry_times = 3
+const promptsid = "09e7876865c1a81d099fd1863dd00aa1"
 
 // 云函数入口函数
 exports.main = async (event, context) => new Promise(async (resolve, reject) => {
   const wxContext = cloud.getWXContext()
   let fileid = event.fileid
-  let prompt = event.prompt
   let openid = wxContext.OPENID
   let appid = wxContext.APPID
   let unionid = wxContext.UNIONID
 
   console.log('draw main')
+  let prompt = await genPrompt()
   let retData = await drawfunc(event.id, fileid, prompt)
   resolve(retData)
 });
+
+async function genPrompt(){
+  let ret = await db.collection('appconfigs').doc(promptsid).get()
+  let prompts = ret.data.prompts
+  let prompt = prompts[Math.floor(Math.random()*prompts.length)].content
+  return prompt
+}
 
 async function drawfunc (id, fileid, prompt){
   return cloud.getTempFileURL({
@@ -74,8 +82,8 @@ async function callapi (id, fileid, fileurl, prompt){
     })
   };
   console.info("post to draw with ", options)
-  // return mockDrawApi(options).then(function (res) {
-  return request_server(options).then(function (res) {
+  return mockDrawApi(options).then(function (res) {
+  // return request_server(options).then(function (res) {
     // 请求成功，上传文件
     let ret = JSON.parse(res)
     console.info("success draw image: ", ret)

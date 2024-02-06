@@ -1,10 +1,7 @@
 
 
 <view class='image-cropper' catchtouchmove='_preventTouchMove'>
-    <view class="bottom">
-        <button class="btn btn-left" bindtap="backindex">返回</button>
-        <button class="btn btn-right" bindtap="generatepic">生成</button>
-    </view>
+
     <view class='main' bindtouchend="_cutTouchEnd" bindtouchstart="_cutTouchStart" bindtouchmove="_cutTouchMove" bindtap="_click">
         <view class='content'>
             <view class='content_top bg_gray {{_flag_bright?"":"bg_black"}}' style="height:{{cut_top}}px;transition-property:{{_cut_animation?'':'background'}}">

@@ -1,3 +1,6 @@
 <image-cropper id="image-cropper" limit_move="{{true}}" disable_rotate="{{true}}" width="{{width}}" height="{{height}}" imgSrc="{{src}}" bindload="cropperload" bindimageload="loadimage" bindtapcut="clickcut"></image-cropper>
 
-
+<view class="bottom">
+    <button class="btn btn-left" bindtap="backindex">返回</button>
+    <button class="btn btn-right" bindtap="generatepic">生成</button>
+</view>

@@ -1,5 +1,5 @@
 /* pages/cropper/cropper.wxss */
-/* .bottom { 
+.bottom { 
     bottom: 30rpx; 
     display: flex; 
     justify-content: center; 
@@ -32,4 +32,4 @@
     text-align: center;
     color: #FFFFFF;
     font-size: 34rpx;
-  } */
+  }

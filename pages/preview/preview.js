@@ -2,8 +2,6 @@
 import settings from "../../settings"
 import Dialog from '@vant/weapp/dialog/dialog'
 var app = getApp();
-let videoAd = null
-let adEnable = false
 
 Page({
     data: {
@@ -25,21 +23,6 @@ Page({
             colors: app.globalData.spec.bg_colors,
             color: app.globalData.spec.bg_colors[0]
         })
-        if (wx.createRewardedVideoAd) {
-          videoAd = wx.createRewardedVideoAd({
-            adUnitId: 'adunit-e4c915532522e3cd'
-          })
-          videoAd.onLoad(() => {console.log('onLoad event emit')})
-          videoAd.onError((err) => {this.gen()})
-          videoAd.onClose((res) => {
-            if (res && res.isEnded) {
-              this.gen()
-            } else {
-              console.log('user stop unfinsh')
-            }
-          })
-          adEnable = true
-        }
     },
     changeColor: function(t) {
         this.setData({
