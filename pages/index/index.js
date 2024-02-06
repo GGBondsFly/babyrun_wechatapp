@@ -81,7 +81,7 @@ Page({
       app.globalData.spec = {
         bg_colors: ["white", "lightblue", "blue", "red", "gray"],
         height: 35,
-        name: "一寸",
+        name: "赤子宝贝",
         pix_height: 413,
         pix_width: 295,
         width: 25,
