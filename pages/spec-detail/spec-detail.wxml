@@ -22,19 +22,7 @@
     class="guide"
   >
     <swiper-item>
-      <image src="../../assets/icon/guide1.png" class="guide-item"></image>
-    </swiper-item>
-    <swiper-item>
-      <image src="../../assets/icon/guide2.png" class="guide-item"></image>
-    </swiper-item>
-    <swiper-item>
-      <image src="../../assets/icon/guide3.png" class="guide-item"></image>
-    </swiper-item>
-    <swiper-item>
-      <image src="../../assets/icon/guide4.png" class="guide-item"></image>
-    </swiper-item>
-    <swiper-item>
-      <image src="../../assets/icon/guide5.png" class="guide-item"></image>
+      <image src="../../assets/icon/guide1.jpg" class="guide-item"></image>
     </swiper-item>
   </swiper>
 </view>

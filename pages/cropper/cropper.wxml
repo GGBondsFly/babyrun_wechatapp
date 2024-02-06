@@ -2,5 +2,5 @@
 
 <view class="bottom">
     <button class="btn btn-left" bindtap="backindex">返回</button>
-    <button class="btn btn-right" bindtap="generatepic">生成</button>
+    <button class="btn btn-right" bindtap="generatepic">预测</button>
 </view>
