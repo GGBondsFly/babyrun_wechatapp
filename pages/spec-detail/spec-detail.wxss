@@ -5,7 +5,7 @@ Page{
   margin-left: 35rpx;
   margin-top: 37rpx;
   width: 686rpx;
-  height: 230rpx;
+  height: 340rpx;
 
   background: #fddbde;
   box-shadow: -2rpx -2rpx 4rpx 2rpx rgba(0, 0, 0, 0.02), 2rpx 2rpx 4rpx 2rpx rgba(0, 0, 0, 0.02);
@@ -33,8 +33,41 @@ Page{
 }
 .info-data-content {
   width: 100%;
-  color: #434343;
+  color: #f38989;
 }
+
+.info-data1 {
+    margin-left: 36rpx;
+    margin-top: 19rpx;
+    display: flex;
+    flex-direction: row;
+    font-size: 30rpx;
+  }
+  
+  .info-data-title1 {
+    width: 188rpx;
+    color: #9B9B9B;
+  }
+  .info-data-content1 {
+    width: 100%;
+    color: #434343;
+  }
+  .info-data2 {
+    margin-left: 36rpx;
+    margin-top: 19rpx;
+    display: flex;
+    flex-direction: row;
+    font-size: 30rpx;
+  }
+  
+  .info-data-title2 {
+    width: 188rpx;
+    color: #9B9B9B;
+  }
+  .info-data-content2 {
+    width: 100%;
+    color: #434343;
+  }
 
 .color {
     border-radius: 40rpx;

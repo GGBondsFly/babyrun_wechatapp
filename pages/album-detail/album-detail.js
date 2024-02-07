@@ -3,7 +3,7 @@ var app = getApp();
 
 Page({
     data: {src: "",detail: "",canvas: ""},
-    onLoad: function(a) {
+    onShow: function(a) {
       console.log('hello');
       console.log(app.globalData.photo)
       this.setData({
@@ -63,7 +63,14 @@ Page({
       }
       )
     },
-    
+    // onshow: function() {
+    //   console.log('hello');
+    //   console.log(app.globalData.photo)
+    //   this.setData({
+    //       detail: app.globalData.photo
+    //   });
+      
+    // },
     saveImageupleft: function() {
       console.log('save')
       console.log(this.data.detail)

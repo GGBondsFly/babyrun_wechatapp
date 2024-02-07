@@ -137,7 +137,7 @@ Page({
     // },
     onShareAppMessage: function() {
         return {
-            title: "快图证件照",
+            title: "赤子宝贝",
             path: "/pages/index/index"
         }
     }

@@ -9,13 +9,13 @@
         </view>
     </view>
     <view class="specs">
-        <view class="title">快快保存吧～</view>
+        <view class="title">快快下载保存吧↓↓↓</view>
     </view>
     <view class="bottom">
         
         <button bindtap="saveImageupleft" class="save-btn1">左上</button>
-        <button bindtap="saveImageupright" class="save-btn3">右上</button>
-        <button bindtap="saveImagedownleft" class="save-btn2">左下</button>
+        <button bindtap="saveImageupright" class="save-btn2">右上</button>
+        <button bindtap="saveImagedownleft" class="save-btn3">左下</button>
         <button bindtap="saveImagedownright" class="save-btn4">右下</button>
     </view>
 </view>

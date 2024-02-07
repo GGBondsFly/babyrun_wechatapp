@@ -38,6 +38,7 @@ Page({
     },
 
     generatepic(event){
+        adEnable = false
         if (adEnable) {
             console.log("激励视频广告生效，正在弹出广告")
             videoAd.show().catch(() => {
@@ -120,6 +121,7 @@ Page({
     submit() {
         wx.showLoading({ title: '提交中' })
         console.info("正在提交生成，用户状态：", app.globalData)
+        console.log('croppper',app.globalData.alphaImage)
         this.uploadPhoto(app.globalData.alphaImage).then(result => {
             this.addPhotos(result).then(dbresult =>{
                 dbresult.prompt = app.globalData.prompt
@@ -138,7 +140,12 @@ Page({
             wx.hideLoading()
             console.log('im here2')
             wx.switchTab({
-                url: "../album/album"
+                url: "../album/album",
+                success: function (e) {
+                    var page = getCurrentPages().pop();
+                    if (page == undefined || page == null) return;
+                    page.onShow();
+                }
             });
             console.log('im here3')
             }).catch(() => {

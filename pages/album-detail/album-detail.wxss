@@ -102,7 +102,7 @@ page {
     height: 88rpx;
     line-height: 88rpx;
     margin: 0;
-    width: 120rpx;
+    width: 130rpx;
 }
 .save-btn2 {
   background: #e4b8b8;
@@ -113,7 +113,7 @@ page {
     height: 88rpx;
     line-height: 88rpx;
     margin: 0;
-    width: 120rpx;
+    width: 130rpx;
     
 }
 .save-btn3 {
@@ -125,18 +125,18 @@ page {
     height: 88rpx;
     line-height: 88rpx;
     margin: 0;
-    width: 120rpx;
+    width: 130rpx;
     
 }
 .save-btn4 {
   background: #e4b8b8;
-    border-radius: 40rpx;
+    border-radius:40rpx;
     color: #fff;
     font-size: 30rpx;
     font-weight: 700;
     height: 88rpx;
     line-height: 88rpx;
     margin: 0;
-    width: 120rpx;
+    width: 130rpx;
     
 }

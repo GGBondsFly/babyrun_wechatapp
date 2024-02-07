@@ -24,6 +24,7 @@ Page({
                 wx.showLoading({
                     title: "图片检测中"
                 });
+                console.log('pix_height',this.data)
                 const {
                   pix_height,
                   pix_width

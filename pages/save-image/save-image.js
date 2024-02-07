@@ -54,7 +54,7 @@ Page({
     onShareAppMessage: function() {
         return {
             path: "/pages/index/index",
-            title: "快图证件照"
+            title: "赤子宝贝"
         };
     }
 });

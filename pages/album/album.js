@@ -25,7 +25,7 @@ Page({
       this.data.selected = [];
     },
     onShow: function() {
-      
+      console.log("======onshow")
       this.getPhotos().then(res => {
         this.setData({
           photos: res
@@ -82,6 +82,25 @@ Page({
 
       const userphoto = await db.collection("photo").orderBy('createTime', 'desc').where({_id:db.command.in(id_list)}).get()
       this.data.photos = userphoto.data
+      console.log("this.data.photos",this.data.photos)
+      console.log("userid",app.globalData.id)
+      const currenttime = new Date().getTime()
+      for (var i = 0; i < this.data.photos.length; i++) {
+        if (this.data.photos[i].status == 1){
+          if (currenttime - this.data.photos[i].createTime.getTime() > 600000){
+            this.data.photos[i].status = -4
+            //edit the status in database
+            let photoid = this.data.photos[i]._id
+            db.collection("photo").doc(photoid).update({
+              data: {
+                status: this.data.photos[i].status
+              }
+            }).then(res => {
+              console.log("status updated")
+            })
+          }
+        }
+      }
       // 获取照片列表
       // const fileList = userphoto.data.map(photo => {
       //   if (photo.genFileID){
@@ -114,12 +133,18 @@ Page({
           const dict = {}
           dict["status"] = userphoto.data[i].status
           if (userphoto.data[i].status == 1){
-            
             dict["genFileID"] = "../../assets/icon/generating.png"}
-          if (userphoto.data[i].status == 'failed'){
-            dict["genFileID"] = "../../assets/icon/failed.png"}
-          if (userphoto.data[i].status == 0){
-            dict["genFileID"] = userphoto.data[i].genFileID}
+          else{
+            if (userphoto.data[i].status == 0){
+              dict["genFileID"] = userphoto.data[i].genFileID}
+            else{
+              dict["genFileID"] = "../../assets/icon/failed.png"
+            }
+          }
+          // if (userphoto.data[i].status == 2){
+          //   dict["genFileID"] = "../../assets/icon/failed.png"}
+          // if (userphoto.data[i].status == 0){
+          //   dict["genFileID"] = userphoto.data[i].genFileID}
           
           
           dict["oriFileID"] = userphoto.data[i].oriFileID
@@ -271,9 +296,22 @@ Page({
         // })
       }
     },
-    gotoSpec: function(t) {
-        wx.switchTab({
-          url: '../index/index',
+    gotoSpec: function() {
+        app.globalData.spec = {
+          bg_colors: ["white", "lightblue", "blue", "red", "gray"],
+          height: 35,
+          name: "赤子宝贝",
+          pix_height: 413,
+          pix_width: 295,
+          width: 25,
+        } 
+        wx.navigateTo({
+            url: "../spec-detail/spec-detail"
         })
-    }
+      },
+    // gotoSpec: function(t) {
+    //     wx.navigateTo({
+    //       url: '../spec-detail/spec-detail',
+    //     })
+    // }
 });

@@ -3,7 +3,7 @@
     "@vant/weapp": "^1.11.4"
   },
   "name": "id-photo-wechat_v1",
-  "description": "快图证件照换底色微信小程序源码，提供证件照制作、换底色、图片压缩等功能",
+  "description": "小宝贝的容貌预测神器",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {

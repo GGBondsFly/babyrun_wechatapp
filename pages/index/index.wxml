@@ -5,26 +5,26 @@
 <view style="display: flex; flex-direction: column;">
   
 
-  <view style="display: flex; width: 100%; height: 750rpx; margin: 0rpx 0rpx 30rpx 0rpx;">
+  <view style="display: flex; width: 100%; height: 750rpx; margin: 0rpx 0rpx 0rpx 0rpx;">
     <view style="margin-left: 35rpx;margin-right: 35rpx;">
-      <image class = "title" src="../../assets/icon/tab1.jpg" style="width: 680rpx; height: 750rpx;" bindtap="gotoOneInchSpec"></image>
+      <image class = "title" src="../../assets/icon/tab1.png" style="width: 660rpx; height: 820rpx;" bindtap="gotoOneInchSpec"></image>
     </view>
     
   </view>
-  <view style="margin-left: 35rpx;margin-right: 35rpx;margin-bottom: 30rpx;" class="swiper">
+  <view style="margin-left: 35rpx;margin-right: 35rpx;margin-bottom: 0rpx;" class="swiper">
     <swiper class = "swiper-item"
         indicator-dots="{{true}}" autoplay="{{true}}" circular="{{true}}" vertical="{{false}}"
         interval="{{5000}}" duration="{{500}}" previous-margin="{{0}}px" next-margin="{{0}}px">
         <swiper-item>
-            <image class="img" src="../../assets/icon/swiper1.jpg" style="width: 680rpx; height: 300rpx;" bindtap="gotoOneInchSpec"></image>
+            <image class="img" src="../../assets/icon/swiper1.png" style="width: 680rpx; height: 310rpx;" bindtap="gotoOneInchSpec"></image>
         </swiper-item>
         <swiper-item>
-            <image class="img" src="../../assets/icon/swiper2.jpg" style="width: 680rpx; height: 300rpx;" bindtap="gotoOneInchSpec"></image>
+            <image class="img" src="../../assets/icon/swiper2.png" style="width: 680rpx; height: 310rpx;" bindtap="gotoOneInchSpec"></image>
         
         </swiper-item>
         <swiper-item>
             
-            <image class="img" src="../../assets/icon/swiper3.jpg" style="width: 680rpx; height: 300rpx;" bindtap="gotoOneInchSpec"></image>
+            <image class="img" src="../../assets/icon/swiper3.png" style="width: 680rpx; height: 310rpx;" bindtap="gotoOneInchSpec"></image>
             
         </swiper-item>
         

@@ -1,12 +1,21 @@
 <header title="{{data.name}}"></header>
 
 <view class="info">
-  <view class="info-title">规则详情</view>
+  <view class="info-title">照片要求</view>
   
   
   <view class="info-data">
-    <view class="info-data-title">照片要求</view>
-    <view class="info-data-content">请截取宝宝面部（勿包含边框或文字）</view>
+    <view class="info-data-content">详情见效果演示，截取后预测效果更好哦～</view>
+    
+  </view>
+  <view class="info-data1">
+    <view class="info-data-title1">规则1</view>
+    <view class="info-data-content1">请截取宝宝面部</view>
+    
+  </view>
+  <view class="info-data2">
+    <view class="info-data-title2">规则2</view>
+    <view class="info-data-content2">勿包含边框、文字及宝宝手部区域</view>
   </view>
   
 </view>
