@@ -23,7 +23,7 @@ page {
   justify-content: space-between;
 }
 /* 头像 */
-.userAvatar {
+.avatar-wrapper {
   display: flex;
   overflow: hidden;
   width: 100rpx;
@@ -31,6 +31,16 @@ page {
   border-radius: 50%;
   background-color: #fff;
 }
+
+.userAvatar {
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  display: block;
+  width: 100rpx;
+  height: 100rpx;
+}
+
 /* 角色信息text */
 .userInfoTxt {
   margin: 10rpx 0 0 20rpx;

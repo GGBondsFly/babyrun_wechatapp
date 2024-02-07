@@ -10,20 +10,6 @@ Page({
         statusBarHeight: app.globalData.statusBarHeight,
     },
     onLoad: function() {
-    //   if (wx.createInterstitialAd) {
-    //     interstitialAd = wx.createInterstitialAd({
-    //       adUnitId: 'adunit-566bd72e0f6f7ace'
-    //     })
-    //     interstitialAd.onLoad(() => {console.log('onLoad event emit')})
-    //     interstitialAd.onError((err) => {console.log('onError event emit', err)})
-    //     interstitialAd.onClose(() => {})
-    //   }
-    //   if (interstitialAd) {
-    //     interstitialAd.show().catch((err) => {
-    //       console.error(err)
-    //     })
-    //   }
-    //   this.loadHostList()
       this.checkUser()
     }, 
 
@@ -39,7 +25,8 @@ Page({
         // 插入用户信息
         let result = await db.collection('user').add({
           data: {
-            nickName: user.nickName,
+            nickName: "微信用户",
+            avatar: null,
             photos: [],
             credits: 0
           }
@@ -50,7 +37,6 @@ Page({
         this.getPhotos(user.data[0].photos) 
       }
       
-      app.globalData.hasUser = true
       app.globalData.id = user.data[0]._id
       app.globalData.openId = user.data[0]._openid
       app.globalData.photos = user.data[0].photos
@@ -66,8 +52,6 @@ Page({
       }
 
       const userphoto_ = await db.collection("photo").orderBy('createTime', 'desc').where({_id:db.command.in(id_list)}).get()
-      console.log('userphoto')
-      console.log(userphoto_)
       app.globalData.userphoto = userphoto_
       
     },
@@ -113,28 +97,6 @@ Page({
         url: "../search/search"
       })
     },
-    // clickTab: function(o) {
-    //   var name = o.detail.name
-    //   this.setData({active: name})
-    //   if (name==99) {
-    //     this.loadHostList()
-    //   } else {
-    //     listPhotoSize({
-    //       category_id: name
-    //     }).then(data => {
-    //       this.setData({
-    //         specs: data
-    //       })
-    //     })
-    //   }
-    // },
-    // loadHostList: function() {
-    //   listRecommendPhotoSize().then(data => {
-    //     this.setData({
-    //       specs: data
-    //     })
-    //   })
-    // },
     onShareAppMessage: function() {
         return {
             title: "赤子宝贝",

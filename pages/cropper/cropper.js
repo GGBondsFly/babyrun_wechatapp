@@ -38,7 +38,7 @@ Page({
     },
 
     generatepic(event){
-        adEnable = false
+        // adEnable = false
         if (adEnable) {
             console.log("激励视频广告生效，正在弹出广告")
             videoAd.show().catch(() => {
