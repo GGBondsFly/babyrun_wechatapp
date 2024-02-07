@@ -865,7 +865,7 @@ Component({
                 });
             },
     
-            generatepic(){
+            generatepic(callback){
                 this._draw(() => {
                     wx.canvasToTempFilePath({
                         width: this.data.width * this.data.export_scale,
@@ -877,6 +877,7 @@ Component({
                         canvasId: this.data.el,
                         success: (res) => {
                             app.globalData.alphaImage = res.tempFilePath
+                            callback()
                         }
                     }, this)
                 })

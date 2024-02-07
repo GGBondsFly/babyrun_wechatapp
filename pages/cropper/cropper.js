@@ -25,7 +25,7 @@ Page({
             })
             videoAd.onClose((res) => {
               if (res && res.isEnded) {
-                this.submit()
+                this.cropper.generatepic(this.submit)
               } else {
                 console.log('user stop unfinsh')
               }
@@ -45,12 +45,12 @@ Page({
                 .then(() => videoAd.show())
                 .catch(err => {
                 console.log('激励视频 广告显示失败, 免费生成')
-                this.submit()
+                this.cropper.generatepic(this.submit)
                 })
             })
         } else {
             console.log("激励视频广告未生效，免费生成中")
-            this.submit()
+            this.cropper.generatepic(this.submit)
         }
     },
 
@@ -118,7 +118,6 @@ Page({
     },
 
     submit() {
-        let ret = this.cropper.generatepic()
         wx.showLoading({ title: '提交中' })
         console.info("正在提交生成，用户状态：", app.globalData)
         this.uploadPhoto(app.globalData.alphaImage).then(result => {
